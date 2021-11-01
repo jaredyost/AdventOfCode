@@ -7,9 +7,11 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Running Code...\n\n");
+            Console.WriteLine("~~ ADVENT OF CODE ~~\n");
 
             // TODO: Add a selector here
+
+            Console.WriteLine("-- 2020: Day 1 --");
             {
                 ReportRepair reportRepair = new ReportRepair();
                 int result = reportRepair.Calculate2Entries();
@@ -35,6 +37,35 @@ namespace AdventOfCode
                     Console.WriteLine("Result not found.");
                 }
             }
+            Console.WriteLine();
+
+            Console.WriteLine("-- 2020: Day 2 --");
+            {
+                PasswordPhilosophy passwordPhilosophy = new PasswordPhilosophy();
+                int result = passwordPhilosophy.ValidatePasswordLength();
+                if(result != (int)PasswordPhilosophy.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Length): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+
+            {
+                PasswordPhilosophy passwordPhilosophy = new PasswordPhilosophy();
+                int result = passwordPhilosophy.ValidatePasswordPositions();
+                if (result != (int)PasswordPhilosophy.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Positions): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+            Console.WriteLine();
 
             /* Wait for an enter key press to exit */
             Console.ReadLine();
