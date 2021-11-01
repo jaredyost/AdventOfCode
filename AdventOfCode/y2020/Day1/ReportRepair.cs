@@ -23,7 +23,7 @@ namespace AdventOfCode.y2020
         public int Calculate2Entries()
         {
             /* Read in all the input values */
-            List<int> inputVals = File.ReadAllLines(@"C:\Users\Jared Yost\source\repos\AdventOfCode\AdventOfCode\y2020\Day1\input.txt").Select(int.Parse).ToList();
+            List<int> inputVals = File.ReadAllLines(Path.Combine("y2020", "Day1", "input.txt")).Select(int.Parse).ToList();
 
             /* Find the entries that sum to 2020 */
             Tuple<int, int> entries = Find2Entries(inputVals);
@@ -46,7 +46,7 @@ namespace AdventOfCode.y2020
         public int Calculate3Entries()
         {
             /* Read in all the input values */
-            List<int> inputVals = File.ReadAllLines(@"C:\Users\Jared Yost\source\repos\AdventOfCode\AdventOfCode\y2020\Day1\input.txt").Select(int.Parse).ToList();
+            List<int> inputVals = File.ReadAllLines(Path.Combine("y2020", "Day1", "input.txt")).Select(int.Parse).ToList();
 
             /* Find the entries that sum to 2020 */
             Tuple<int, int, int> entries = Find3Entries(inputVals);
