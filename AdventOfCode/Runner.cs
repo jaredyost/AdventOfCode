@@ -56,7 +56,7 @@ namespace AdventOfCode
             {
                 PasswordPhilosophy passwordPhilosophy = new PasswordPhilosophy();
                 int result = passwordPhilosophy.ValidatePasswordPositions();
-                if (result != (int)PasswordPhilosophy.ErrorCodes.INVALID_RESULT)
+                if(result != (int)PasswordPhilosophy.ErrorCodes.INVALID_RESULT)
                 {
                     Console.WriteLine($"RESULT (Positions): { result }");
                 }
@@ -67,8 +67,37 @@ namespace AdventOfCode
             }
             Console.WriteLine();
 
+            Console.WriteLine("-- 2020: Day 3 --");
+            {
+                TobogganTrajectory tobogganTrajectory = new TobogganTrajectory();
+                int result = tobogganTrajectory.CalculateTreeEncounterSinglePath();
+                if(result != (int)TobogganTrajectory.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Single Path): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+
+            {
+                TobogganTrajectory tobogganTrajectory = new TobogganTrajectory();
+                double result = tobogganTrajectory.CalculateTreeEncounterDynamicPath();
+                if(result != (int)TobogganTrajectory.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Dynamic Path): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+            Console.WriteLine();
+
             /* Wait for an enter key press to exit */
             Console.ReadLine();
+            Console.Write("~~ END ~~");
         }
     }
 }
