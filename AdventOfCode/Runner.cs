@@ -95,6 +95,34 @@ namespace AdventOfCode
             }
             Console.WriteLine();
 
+            Console.WriteLine("-- 2020: Day 4 --");
+            {
+                PassportProcessing passportProcessing = new PassportProcessing();
+                int result = passportProcessing.ValidatePassports();
+                if(result != (int)PassportProcessing.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (No Validation): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+
+            {
+                PassportProcessing passportProcessing = new PassportProcessing();
+                int result = passportProcessing.ValidatePassportFields();
+                if(result != (int)PassportProcessing.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Validation): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+            Console.WriteLine();
+
             /* Wait for an enter key press to exit */
             Console.ReadLine();
             Console.Write("~~ END ~~");

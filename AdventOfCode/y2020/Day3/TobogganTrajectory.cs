@@ -7,6 +7,9 @@ namespace AdventOfCode.y2020
 {
     public class TobogganTrajectory
     {
+        /// <summary>
+        /// Error Codes associated with Toboggan Trajectory
+        /// </summary>
         public enum ErrorCodes : int
         {
             INVALID_RESULT  = -1,

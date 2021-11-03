@@ -6,6 +6,9 @@ namespace AdventOfCode.y2020
 {
     public class PasswordPhilosophy
     {
+        /// <summary>
+        /// Error Codes associated with Password Philosophy
+        /// </summary>
         public enum ErrorCodes : int
         {
             INVALID_RESULT  = -1,
