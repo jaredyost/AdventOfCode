@@ -123,6 +123,34 @@ namespace AdventOfCode
             }
             Console.WriteLine();
 
+            Console.WriteLine("-- 2020: Day 5 --");
+            {
+                BinaryBoarding binaryBoarding = new BinaryBoarding();
+                int result = binaryBoarding.LocateSeatFullPlane();
+                if(result != (int)BinaryBoarding.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Full Plane): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+
+            {
+                BinaryBoarding binaryBoarding = new BinaryBoarding();
+                int result = binaryBoarding.LocateSeatMissingSeats();
+                if(result != (int)BinaryBoarding.ErrorCodes.INVALID_RESULT)
+                {
+                    Console.WriteLine($"RESULT (Missing Seats): { result }");
+                }
+                else
+                {
+                    Console.WriteLine("Result not found.");
+                }
+            }
+            Console.WriteLine();
+
             /* Wait for an enter key press to exit */
             Console.ReadLine();
             Console.Write("~~ END ~~");
