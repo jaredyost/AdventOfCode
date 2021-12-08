@@ -112,7 +112,7 @@ namespace AdventOfCode.y2021
             int score = cardNumbers.Sum() * calledNumbers[calledNumbers.Count() - 1];
 
             /* Report the solution */
-            Console.Write($"Solution: { score }");
+            Console.WriteLine($"Solution: { score }");
         }
     }
 }

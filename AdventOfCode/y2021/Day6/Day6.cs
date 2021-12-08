@@ -36,7 +36,7 @@ namespace AdventOfCode.y2021
             }
 
             /* Report the solution */
-            Console.Write($"Solution: { fishLifeCycle.Sum() }");
+            Console.WriteLine($"Solution: { fishLifeCycle.Sum() }");
         }
     }
 }

@@ -28,7 +28,7 @@ namespace AdventOfCode.y2021
             }
 
             /* Report the solution */
-            Console.Write($"Solution: { numDepthIncreases }");
+            Console.WriteLine($"Solution: { numDepthIncreases }");
         }
     }
 }

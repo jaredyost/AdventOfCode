@@ -39,7 +39,7 @@ namespace AdventOfCode.y2021
             uint co2ScrubberRating = Convert.ToUInt32(remainingValues.First(), 2);
 
             /* Report the solution */
-            Console.Write($"Solution: { oxygenGeneratorRating * co2ScrubberRating }");
+            Console.WriteLine($"Solution: { oxygenGeneratorRating * co2ScrubberRating }");
         }
     }
 }

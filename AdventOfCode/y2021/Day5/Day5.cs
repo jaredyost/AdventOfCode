@@ -60,7 +60,7 @@ namespace AdventOfCode.y2021
             }
 
             /* Report the solution */
-            Console.Write($"Solution: { numOverlaps }");
+            Console.WriteLine($"Solution: { numOverlaps }");
         }
 
         private class LineSegment

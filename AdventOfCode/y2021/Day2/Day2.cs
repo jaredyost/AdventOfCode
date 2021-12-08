@@ -42,7 +42,7 @@ namespace AdventOfCode.y2021
             }
 
             /* Report the solution */
-            Console.Write($"Solution: { x * y }");
+            Console.WriteLine($"Solution: { x * y }");
         }
     }
 }
