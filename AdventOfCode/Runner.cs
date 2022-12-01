@@ -7,7 +7,7 @@ namespace AdventOfCode
         static void Main(string[] args)
         {
             Console.WriteLine("~~ ADVENT OF CODE ~~\n");
-            new y2021.Day7().Run();
+            new y2022.Day1().Run();
         }
     }
 }
