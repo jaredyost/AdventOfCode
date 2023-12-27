@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Core;
-using System.Data;
 
 namespace AdventOfCode.Solvers.y2023
 {

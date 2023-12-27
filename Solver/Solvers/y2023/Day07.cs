@@ -152,17 +152,12 @@ namespace AdventOfCode.Solvers.y2023
                     }
                 }
 
-                switch (pairCount)
+                return pairCount switch
                 {
-                    case 1:
-                        return WinType.OnePair;
-
-                    case 2:
-                        return WinType.TwoPair;
-
-                    default:
-                        return distinctCards.Length == 1 ? WinType.FiveOfAKind : WinType.HighCard;
-                }
+                    1 => WinType.OnePair,
+                    2 => WinType.TwoPair,
+                    _ => distinctCards.Length == 1 ? WinType.FiveOfAKind : WinType.HighCard,
+                };
             }
 
             private static WinType GetWinTypeWithJokers(int[] aCards)
@@ -207,17 +202,12 @@ namespace AdventOfCode.Solvers.y2023
                     }
                 }
 
-                switch (pairCount)
+                return pairCount switch
                 {
-                    case 1:
-                        return WinType.OnePair;
-
-                    case 2:
-                        return WinType.TwoPair;
-
-                    default:
-                        return aCards.Distinct().Count() <= 2 ? WinType.FiveOfAKind : WinType.HighCard;
-                }
+                    1 => WinType.OnePair,
+                    2 => WinType.TwoPair,
+                    _ => aCards.Distinct().Count() <= 2 ? WinType.FiveOfAKind : WinType.HighCard,
+                };
             }
 
             private class HandComparer : IComparer<Hand>

@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Core;
-using System.Collections.Generic;
 
 namespace AdventOfCode.Solvers.y2023
 {
@@ -106,7 +105,7 @@ namespace AdventOfCode.Solvers.y2023
 
             char[] topBottomRow = new string('.', aInput[0].Length + 2).ToCharArray();
             engineMap.Add(topBottomRow);
-            engineMap.AddRange(aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => new string("." + x + ".").ToCharArray()));
+            engineMap.AddRange(aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => $".{x}.".ToCharArray()));
             engineMap.Add(topBottomRow);
 
             return [.. engineMap];
