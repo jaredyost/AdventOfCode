@@ -22,6 +22,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Solvers\Y2020\Y2020.csproj" />
+    <ProjectReference Include="..\Solvers\Y2021\Y2021.csproj" />
+    <ProjectReference Include="..\Solvers\Y2022\Y2022.csproj" />
     <ProjectReference Include="..\Solvers\Y2023\Y2023.csproj" />
     <ProjectReference Include="..\Solvers\Y2024\Y2024.csproj" />
   </ItemGroup>

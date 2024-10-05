@@ -6,7 +6,7 @@ namespace AdventOfCode.Tests.Y2023
     public class Day08Tests
     {
         [TestMethod]
-        public async Task Part1Example1()
+        public async Task Y2023_D08_Part1_Example1()
         {
             // Arrange
             Day08 solver = new();
@@ -31,7 +31,7 @@ namespace AdventOfCode.Tests.Y2023
         }
 
         [TestMethod]
-        public async Task Part1Example2()
+        public async Task Y2023_D08_Part1_Example2()
         {
             // Arrange
             Day08 solver = new();
@@ -52,7 +52,7 @@ namespace AdventOfCode.Tests.Y2023
         }
 
         [TestMethod]
-        public async Task Part2Example()
+        public async Task Y2023_D08_Part2_Example()
         {
             // Arrange
             Day08 solver = new();
@@ -78,7 +78,7 @@ namespace AdventOfCode.Tests.Y2023
         }
 
         [TestMethod]
-        public async Task Part1Real()
+        public async Task Y2023_D08_Part1_Real()
         {
             // Arrange
             Day08 solver = new();
@@ -91,7 +91,7 @@ namespace AdventOfCode.Tests.Y2023
         }
 
         [TestMethod]
-        public async Task Part2Real()
+        public async Task Y2023_D08_Part2_Real()
         {
             // Arrange
             Day08 solver = new();
