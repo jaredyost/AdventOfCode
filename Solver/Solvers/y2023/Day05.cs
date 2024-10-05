@@ -4,7 +4,7 @@ namespace AdventOfCode.Solvers.y2023
 {
     public class Day05 : SolverBase
     {
-        public Day05() : base(new DateOnly(2023, 12, 05)) { }
+        public Day05() : base(new(2023, 12, 05)) { }
 
         public override string SolvePart1(string[] aInput)
         {
@@ -51,7 +51,7 @@ namespace AdventOfCode.Solvers.y2023
                         if (lines.Count > 0)
                         {
                             // We're about to start a new map, parse the cached one first
-                            Maps.Add(new Map(lines));
+                            Maps.Add(new(lines));
                             lines.Clear();
                         }
 
@@ -64,7 +64,7 @@ namespace AdventOfCode.Solvers.y2023
                 if (lines.Count > 0)
                 {
                     // Parse the last cached map
-                    Maps.Add(new Map(lines));
+                    Maps.Add(new(lines));
                 }
             }
 

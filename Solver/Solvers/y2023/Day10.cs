@@ -3,9 +3,9 @@ using System.Drawing;
 
 namespace AdventOfCode.Solvers.y2023
 {
-    public partial class Day10 : SolverBase
+    public class Day10 : SolverBase
     {
-        public Day10() : base(new DateOnly(2023, 12, 10)) { }
+        public Day10() : base(new(2023, 12, 10)) { }
 
         public override string SolvePart1(string[] aInput)
         {
@@ -58,7 +58,7 @@ namespace AdventOfCode.Solvers.y2023
                 {
                     if (aMap[y][x] == 'S')
                     {
-                        return new Point(x, y);
+                        return new(x, y);
                     }
                 }
             }
@@ -74,25 +74,25 @@ namespace AdventOfCode.Solvers.y2023
             // Above
             if ("S|LJ".Contains(currentSymbol) && "|7F".Contains(aMap[aCoordinate.Y - 1][aCoordinate.X]))
             {
-                adjacents.Add(new Point(aCoordinate.X, aCoordinate.Y - 1));
+                adjacents.Add(new(aCoordinate.X, aCoordinate.Y - 1));
             }
 
             // Below
             if ("S|7F".Contains(currentSymbol) && "|LJ".Contains(aMap[aCoordinate.Y + 1][aCoordinate.X]))
             {
-                adjacents.Add(new Point(aCoordinate.X, aCoordinate.Y + 1));
+                adjacents.Add(new(aCoordinate.X, aCoordinate.Y + 1));
             }
 
             // Left
             if ("S-7J".Contains(currentSymbol) && "-LF".Contains(aMap[aCoordinate.Y][aCoordinate.X - 1]))
             {
-                adjacents.Add(new Point(aCoordinate.X - 1, aCoordinate.Y));
+                adjacents.Add(new(aCoordinate.X - 1, aCoordinate.Y));
             }
 
             // Right
             if ("S-LF".Contains(currentSymbol) && "-7J".Contains(aMap[aCoordinate.Y][aCoordinate.X + 1]))
             {
-                adjacents.Add(new Point(aCoordinate.X + 1, aCoordinate.Y));
+                adjacents.Add(new(aCoordinate.X + 1, aCoordinate.Y));
             }
 
             return adjacents;
@@ -167,7 +167,7 @@ namespace AdventOfCode.Solvers.y2023
             int intersectionCount = 0;
             for (int x = aCoordinate.X - 1; x >= 0; x--)
             {
-                if (!aPath.Contains(new Point(x, aCoordinate.Y)))
+                if (!aPath.Contains(new(x, aCoordinate.Y)))
                 {
                     continue;
                 }
@@ -212,7 +212,7 @@ namespace AdventOfCode.Solvers.y2023
             int intersectionCount = 0;
             for (int y = aCoordinate.Y - 1; y >= 0; y--)
             {
-                if (!aPath.Contains(new Point(aCoordinate.X, y)))
+                if (!aPath.Contains(new(aCoordinate.X, y)))
                 {
                     continue;
                 }

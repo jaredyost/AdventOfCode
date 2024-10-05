@@ -8,7 +8,7 @@ namespace AdventOfCode.Solvers.y2023
 {
     public partial class Day08 : SolverBase
     {
-        public Day08() : base(new DateOnly(2023, 12, 08)) { }
+        public Day08() : base(new(2023, 12, 08)) { }
 
         public override string SolvePart1(string[] aInput)
         {

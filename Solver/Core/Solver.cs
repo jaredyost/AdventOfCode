@@ -45,10 +45,10 @@ namespace AdventOfCode.Core
             {
                 solution = "Not Implemented";
             }
-            catch (Exception)
-            {
-                solution = "Error";
-            }
+            // catch (Exception)
+            // {
+            //     solution = "Error";
+            // }
             finally
             {
                 stopwatch.Stop();

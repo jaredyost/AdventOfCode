@@ -1,20 +1,15 @@
 ﻿namespace AdventOfCode.Core
 {
-    public abstract class SolverBase
+    /// <summary>
+    /// Create the solver base
+    /// </summary>
+    /// <param name="aDate">The date the solver represents</param>
+    public abstract class SolverBase(DateOnly aDate)
     {
         /// <summary>
         /// The date the solver represents
         /// </summary>
-        private DateOnly Date { get; }
-
-        /// <summary>
-        /// Create the solver base
-        /// </summary>
-        /// <param name="aDate">The date the solver represents</param>
-        protected SolverBase(DateOnly aDate)
-        {
-            Date = aDate;
-        }
+        private DateOnly Date { get; } = aDate;
 
         /// <summary>
         /// Performs basic calculations on the input to retrieve a solution.

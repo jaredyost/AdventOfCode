@@ -4,7 +4,7 @@ namespace AdventOfCode.Solvers.y2023
 {
     public class Day02 : SolverBase
     {
-        public Day02() : base(new DateOnly(2023, 12, 02)) { }
+        public Day02() : base(new(2023, 12, 02)) { }
 
         public override string SolvePart1(string[] aInput)
         {

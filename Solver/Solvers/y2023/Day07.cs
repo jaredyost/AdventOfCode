@@ -4,7 +4,7 @@ namespace AdventOfCode.Solvers.y2023
 {
     public class Day07 : SolverBase
     {
-        public Day07() : base(new DateOnly(2023, 12, 07)) { }
+        public Day07() : base(new(2023, 12, 07)) { }
 
         public override string SolvePart1(string[] aInput)
         {
@@ -112,7 +112,7 @@ namespace AdventOfCode.Solvers.y2023
                 List<Hand> hands = [];
                 foreach (string input in aInput.Where(x => !string.IsNullOrWhiteSpace(x)))
                 {
-                    hands.Add(new Hand(input, aJType));
+                    hands.Add(new(input, aJType));
                 }
 
                 return [.. hands.OrderBy(x => x, new HandComparer())];

@@ -18,7 +18,7 @@ namespace AdventOfCode.Solvers.y2023
             { "nine", "n99e" },
         };
 
-        public Day01() : base(new DateOnly(2023, 12, 01)) { }
+        public Day01() : base(new(2023, 12, 01)) { }
 
         public override string SolvePart1(string[] aInput)
         {

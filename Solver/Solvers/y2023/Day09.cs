@@ -2,7 +2,7 @@
 
 namespace AdventOfCode.Solvers.y2023
 {
-    public partial class Day09 : SolverBase
+    public class Day09 : SolverBase
     {
         private enum ExtrapolateDirection
         {
@@ -10,7 +10,7 @@ namespace AdventOfCode.Solvers.y2023
             Backwards,
         }
 
-        public Day09() : base(new DateOnly(2023, 12, 09)) { }
+        public Day09() : base(new(2023, 12, 09)) { }
 
         public override string SolvePart1(string[] aInput)
         {
