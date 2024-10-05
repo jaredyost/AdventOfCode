@@ -5,10 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>Jared Yost</Authors>
-    <RootNamespace>AdventOfCode.Tests</RootNamespace>
-
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
+    <RootNamespace>AdventOfCode.Core</RootNamespace>
+    <UserSecretsId>f186b2eb-c8a4-4612-8ff3-3f25dbaf6872</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,19 +22,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Solvers\Y2023\Y2023.csproj" />
-    <ProjectReference Include="..\Solvers\Y2024\Y2024.csproj" />
+    <PackageReference Include="AoCHelper" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

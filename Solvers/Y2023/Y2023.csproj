@@ -5,10 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>Jared Yost</Authors>
-    <RootNamespace>AdventOfCode.Tests</RootNamespace>
-
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
+    <RootNamespace>AdventOfCode.Solvers.Y2023</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,19 +21,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <ProjectReference Include="..\..\Core\Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Solvers\Y2023\Y2023.csproj" />
-    <ProjectReference Include="..\Solvers\Y2024\Y2024.csproj" />
+    <None Update="$(MSBuildProjectDirectory)\Inputs\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

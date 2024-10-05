@@ -1,12 +1,12 @@
-using AdventOfCode.Solvers.y2023;
+using AdventOfCode.Solvers.Y2023;
 
-namespace AdventOfCode.Tests.y2023
+namespace AdventOfCode.Tests.Y2023
 {
     [TestClass]
     public class Day10Tests
     {
         [TestMethod]
-        public void TestPart1Example1()
+        public async Task Part1Example1()
         {
             // Arrange
             Day10 solver = new();
@@ -29,8 +29,8 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result1 = solver.SolvePart1(TestInput1);
-            string result2 = solver.SolvePart1(TestInput2);
+            string result1 = await solver.SolvePart1(TestInput1);
+            string result2 = await solver.SolvePart1(TestInput2);
 
             // Assert
             Assert.AreEqual("4", result1);
@@ -38,7 +38,7 @@ namespace AdventOfCode.Tests.y2023
         }
 
         [TestMethod]
-        public void TestPart1Example2()
+        public async Task Part1Example2()
         {
             // Arrange
             Day10 solver = new();
@@ -61,8 +61,8 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result1 = solver.SolvePart1(TestInput1);
-            string result2 = solver.SolvePart1(TestInput2);
+            string result1 = await solver.SolvePart1(TestInput1);
+            string result2 = await solver.SolvePart1(TestInput2);
 
             // Assert
             Assert.AreEqual("8", result1);
@@ -70,7 +70,7 @@ namespace AdventOfCode.Tests.y2023
         }
 
         [TestMethod]
-        public void TestPart2Example1()
+        public async Task Part2Example1()
         {
             // Arrange
             Day10 solver = new();
@@ -101,8 +101,8 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result1 = solver.SolvePart2(TestInput1);
-            string result2 = solver.SolvePart2(TestInput2);
+            string result1 = await solver.SolvePart2(TestInput1);
+            string result2 = await solver.SolvePart2(TestInput2);
 
             // Assert
             Assert.AreEqual("4", result1);
@@ -110,7 +110,7 @@ namespace AdventOfCode.Tests.y2023
         }
 
         [TestMethod]
-        public void TestPart2Example2()
+        public async Task Part2Example2()
         {
             // Arrange
             Day10 solver = new();
@@ -129,14 +129,14 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result = solver.SolvePart2(TestInput);
+            string result = await solver.SolvePart2(TestInput);
 
             // Assert
             Assert.AreEqual("8", result);
         }
 
         [TestMethod]
-        public void TestPart2Example3()
+        public async Task Part2Example3()
         {
             // Arrange
             Day10 solver = new();
@@ -155,33 +155,33 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result = solver.SolvePart2(TestInput);
+            string result = await solver.SolvePart2(TestInput);
 
             // Assert
             Assert.AreEqual("10", result);
         }
 
         [TestMethod]
-        public void TestPart1Real()
+        public async Task Part1Real()
         {
             // Arrange
             Day10 solver = new();
 
             // Act
-            string result = solver.SolvePart1(solver.GetInput());
+            string result = await solver.SolvePart1(solver.ProblemInput);
 
             // Assert
             Assert.AreEqual("7063", result);
         }
 
         [TestMethod]
-        public void TestPart2Real()
+        public async Task Part2Real()
         {
             // Arrange
             Day10 solver = new();
 
             // Act
-            string result = solver.SolvePart2(solver.GetInput());
+            string result = await solver.SolvePart2(solver.ProblemInput);
 
             // Assert
             Assert.AreEqual("589", result);

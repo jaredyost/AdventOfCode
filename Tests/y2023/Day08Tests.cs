@@ -1,12 +1,12 @@
-using AdventOfCode.Solvers.y2023;
+using AdventOfCode.Solvers.Y2023;
 
-namespace AdventOfCode.Tests.y2023
+namespace AdventOfCode.Tests.Y2023
 {
     [TestClass]
     public class Day08Tests
     {
         [TestMethod]
-        public void TestPart1Example1()
+        public async Task Part1Example1()
         {
             // Arrange
             Day08 solver = new();
@@ -24,14 +24,14 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result = solver.SolvePart1(TestInput);
+            string result = await solver.SolvePart1(TestInput);
 
             // Assert
             Assert.AreEqual("2", result);
         }
 
         [TestMethod]
-        public void TestPart1Example2()
+        public async Task Part1Example2()
         {
             // Arrange
             Day08 solver = new();
@@ -45,14 +45,14 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result = solver.SolvePart1(TestInput);
+            string result = await solver.SolvePart1(TestInput);
 
             // Assert
             Assert.AreEqual("6", result);
         }
 
         [TestMethod]
-        public void TestPart2Example()
+        public async Task Part2Example()
         {
             // Arrange
             Day08 solver = new();
@@ -71,33 +71,33 @@ namespace AdventOfCode.Tests.y2023
             ];
 
             // Act
-            string result = solver.SolvePart2(TestInput);
+            string result = await solver.SolvePart2(TestInput);
 
             // Assert
             Assert.AreEqual("6", result);
         }
 
         [TestMethod]
-        public void TestPart1Real()
+        public async Task Part1Real()
         {
             // Arrange
             Day08 solver = new();
 
             // Act
-            string result = solver.SolvePart1(solver.GetInput());
+            string result = await solver.SolvePart1(solver.ProblemInput);
 
             // Assert
             Assert.AreEqual("24253", result);
         }
 
         [TestMethod]
-        public void TestPart2Real()
+        public async Task Part2Real()
         {
             // Arrange
             Day08 solver = new();
 
             // Act
-            string result = solver.SolvePart2(solver.GetInput());
+            string result = await solver.SolvePart2(solver.ProblemInput);
 
             // Assert
             Assert.AreEqual("12357789728873", result);
