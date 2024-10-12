@@ -5,39 +5,45 @@ namespace AdventOfCode.Tests.Y2020
     [TestClass]
     public class Day02Tests
     {
-        [TestMethod, Ignore]
+        [TestMethod]
         public async Task Y2020_D02_Part1_Example()
         {
             // Arrange
             Day02 solver = new();
             string[] TestInput =
             [
+                "1-3 a: abcde",
+                "1-3 b: cdefg",
+                "2-9 c: ccccccccc",
             ];
 
             // Act
             string result = await solver.SolvePart1(TestInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("2", result);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         public async Task Y2020_D02_Part2_Example()
         {
             // Arrange
             Day02 solver = new();
             string[] TestInput =
             [
+                "1-3 a: abcde",
+                "1-3 b: cdefg",
+                "2-9 c: ccccccccc",
             ];
 
             // Act
             string result = await solver.SolvePart2(TestInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("1", result);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         public async Task Y2020_D02_Part1_Real()
         {
             // Arrange
@@ -47,10 +53,10 @@ namespace AdventOfCode.Tests.Y2020
             string result = await solver.SolvePart1(solver.ProblemInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("418", result);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         public async Task Y2020_D02_Part2_Real()
         {
             // Arrange
@@ -60,7 +66,7 @@ namespace AdventOfCode.Tests.Y2020
             string result = await solver.SolvePart2(solver.ProblemInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("616", result);
         }
     }
 }
