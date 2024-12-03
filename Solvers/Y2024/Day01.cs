@@ -6,13 +6,11 @@
 
         public override ValueTask<string> SolvePart1(string[] aInput)
         {
-            List<int> firstColumn = [.. aInput.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0])).Order()];
-            List<int> secondColumn = [.. aInput.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1])).Order()];
-
             int distance = 0;
-            for (int i = 0; i < firstColumn.Count; i++)
+            Tuple<int[], int[]> columns = GetColumns(aInput);
+            for (int i = 0; i < columns.Item1.Length; i++)
             {
-                distance += Math.Abs(firstColumn[i] - secondColumn[i]);
+                distance += Math.Abs(columns.Item1[i] - columns.Item2[i]);
             }
 
             return new(distance.ToString());
@@ -20,16 +18,23 @@
 
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
-            List<int> firstColumn = [.. aInput.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0]))];
-            List<int> secondColumn = [.. aInput.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1]))];
-
             int similarityScore = 0;
-            foreach (int number in firstColumn.Distinct())
+            Tuple<int[], int[]> columns = GetColumns(aInput);
+            foreach (int number in columns.Item1.Distinct())
             {
-                similarityScore += number * firstColumn.Where(x => x == number).Count() * secondColumn.Where(x => x == number).Count();
+                similarityScore += number
+                                    * columns.Item1.Where(x => x == number).Count()
+                                    * columns.Item2.Where(x => x == number).Count();
             }
 
             return new(similarityScore.ToString());
+        }
+
+        private static Tuple<int[], int[]> GetColumns(string[] aLists)
+        {
+            int[] firstColumn = [.. aLists.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0])).Order()];
+            int[] secondColumn = [.. aLists.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1])).Order()];
+            return new(firstColumn, secondColumn);
         }
     }
 }
