@@ -1,76 +1,51 @@
-﻿using System.Collections.Generic;
-
-namespace AdventOfCode.Solvers.Y2024
+﻿namespace AdventOfCode.Solvers.Y2024
 {
     public class Day02 : BaseDay2024
     {
         protected override int Day => 2;
 
+        private enum ErrorTolerance
+        {
+            None,
+            Single,
+        }
+
         public override ValueTask<string> SolvePart1(string[] aInput)
         {
-            int safeReportCount = 0;
-            foreach (string report in aInput)
-            {
-                List<int> levels = report.Split().Select(int.Parse).ToList();
-                int factor = levels[1] - levels[0] > 0 ? 1 : -1;
-
-                bool safe = true;
-                for (int i = 1; i < levels.Count && safe; i++)
-                {
-                    int difference = levels[i] - levels[i - 1];
-                    safe = factor * difference > 0 && Math.Abs(difference) >= 1 && Math.Abs(difference) <= 3;
-                }
-
-                if (safe)
-                {
-                    safeReportCount++;
-                }
-            }
-
-            return new(safeReportCount.ToString());
+            return new(aInput.Where(x => IsReportSafe(x, ErrorTolerance.None)).Count().ToString());
         }
 
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
-            int safeReportCount = 0;
-            foreach (string report in aInput)
+            return new(aInput.Where(x => IsReportSafe(x, ErrorTolerance.Single)).Count().ToString());
+        }
+
+        private static bool IsReportSafe(string aReport, ErrorTolerance aErrorTolerance)
+        {
+            return IsReportSafe([.. aReport.Split().Select(int.Parse)], aErrorTolerance);
+        }
+
+        private static bool IsReportSafe(List<int> aLevels, ErrorTolerance aErrorTolerance)
+        {
+            bool isSafe = true;
+            int factor = aLevels[1] - aLevels[0] > 0 ? 1 : -1;
+            for (int i = 1; i < aLevels.Count && isSafe; i++)
             {
-                List<int> levels = report.Split().Select(int.Parse).ToList();
-                int factor = levels[1] - levels[0] > 0 ? 1 : -1;
+                int difference = aLevels[i] - aLevels[i - 1];
+                isSafe = factor * difference > 0 && Math.Abs(difference) >= 1 && Math.Abs(difference) <= 3;
+            }
 
-                bool safe = true;
-                for (int i = 1; i < levels.Count && safe; i++)
+            if (!isSafe && aErrorTolerance == ErrorTolerance.Single)
+            {
+                for (int i = 0; i < aLevels.Count && !isSafe; i++)
                 {
-                    int difference = levels[i] - levels[i - 1];
-                    safe = factor * difference > 0 && Math.Abs(difference) >= 1 && Math.Abs(difference) <= 3;
-                }
-
-                if (!safe)
-                {
-                    for (int i = 0; i < levels.Count && !safe; i++)
-                    {
-                        List<int> modifiedLevels = new(levels);
-                        modifiedLevels.RemoveAt(i);
-                        int newFactor = modifiedLevels[1] - modifiedLevels[0] > 0 ? 1 : -1;
-
-                        bool newSafe = true;
-                        for (int j = 1; j < modifiedLevels.Count && newSafe; j++)
-                        {
-                            int difference = modifiedLevels[j] - modifiedLevels[j - 1];
-                            newSafe = newFactor * difference > 0 && Math.Abs(difference) >= 1 && Math.Abs(difference) <= 3;
-                        }
-
-                        safe = newSafe;
-                    }
-                }
-
-                if (safe)
-                {
-                    safeReportCount++;
+                    List<int> modifiedLevels = [.. aLevels];
+                    modifiedLevels.RemoveAt(i);
+                    isSafe = IsReportSafe(modifiedLevels, ErrorTolerance.None);
                 }
             }
 
-            return new(safeReportCount.ToString());
+            return isSafe;
         }
     }
 }
