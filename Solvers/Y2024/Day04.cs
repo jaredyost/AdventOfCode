@@ -1,57 +1,36 @@
-﻿namespace AdventOfCode.Solvers.Y2024
+﻿using AdventOfCode.Core.Helpers.Mapping;
+
+namespace AdventOfCode.Solvers.Y2024
 {
-    public partial class Day04 : BaseDay2024
+    public class Day04 : BaseDay2024
     {
         protected override int Day => 4;
-
-        private struct Coordinate(int aX, int aY)
-        {
-            public int X = aX;
-            public int Y = aY;
-        }
 
         public override ValueTask<string> SolvePart1(string[] aInput)
         {
             int count = 0;
-            for (int y = 0; y < aInput.Length; y++)
-            {
-                for (int x = 0; x < aInput[y].Length; x++)
-                {
-                    if (aInput[y][x] == 'X')
-                    {
-                        count += FindWord(aInput, new(x, y));
-                    }
-                }
-            }
-
+            Map<char> map = new(aInput, Map<char>.CharacterParser);
+            map.IterateColumnsRows(coordinate => count += CountXmasOccurrences(map, coordinate));
             return new(count.ToString());
         }
 
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
             int count = 0;
-            for (int y = 0; y < aInput.Length; y++)
-            {
-                for (int x = 0; x < aInput[y].Length; x++)
-                {
-                    if (aInput[y][x] == 'A' && IsValidDiagonal(aInput, new(x, y)))
-                    {
-                        count++;
-                    }
-                }
-            }
-
+            Map<char> map = new(aInput, Map<char>.CharacterParser);
+            map.IterateColumnsRows(coordinate => count += IsValidXMas(map, coordinate) ? 1 : 0);
             return new(count.ToString());
         }
 
-        private static bool IsCoordinateValid(string[] aPuzzle, Coordinate aCoordinate)
+        private static int CountXmasOccurrences(Map<char> aMap, Coordinate aCoordinate)
         {
-            return aCoordinate.X >= 0 && aCoordinate.X < aPuzzle[0].Length
-                    && aCoordinate.Y >= 0 && aCoordinate.Y < aPuzzle.Length;
-        }
+            const string WordToMatch = "XMAS";
 
-        private static int FindWord(string[] aPuzzle, Coordinate aStartingCoordinate)
-        {
+            if (aMap[aCoordinate.X, aCoordinate.Y] != WordToMatch[0])
+            {
+                return 0;
+            }
+
             int count = 0;
             for (int xAdjust = -1; xAdjust <= 1; xAdjust++)
             {
@@ -62,18 +41,13 @@
                         continue;
                     }
 
-                    string word = "X";
-                    for (int i = 1; i <= 3; i++)
+                    Coordinate[] coordinates = new Coordinate[4];
+                    for (int i = 0; i < coordinates.Length; i++)
                     {
-                        Coordinate currentCoordinate = new(aStartingCoordinate.X + (xAdjust * i),
-                                                            aStartingCoordinate.Y + (yAdjust * i));
-                        if (IsCoordinateValid(aPuzzle, currentCoordinate))
-                        {
-                            word += aPuzzle[currentCoordinate.Y][currentCoordinate.X];
-                        }
+                        coordinates[i] = new(aCoordinate.X + (xAdjust * i), aCoordinate.Y + (yAdjust * i));
                     }
 
-                    if (word == "XMAS")
+                    if (aMap.IsValidCoordinate(coordinates) && new string(aMap[coordinates]) == WordToMatch)
                     {
                         count++;
                     }
@@ -83,21 +57,32 @@
             return count;
         }
 
-        private static bool IsValidDiagonal(string[] aPuzzle, Coordinate aCenterCoordinate)
+        private static bool IsValidXMas(Map<char> aMap, Coordinate aCenterCoordinate)
         {
-            if (!IsCoordinateValid(aPuzzle, new(aCenterCoordinate.X - 1, aCenterCoordinate.Y - 1))
-                || !IsCoordinateValid(aPuzzle, new(aCenterCoordinate.X - 1, aCenterCoordinate.Y + 1))
-                || !IsCoordinateValid(aPuzzle, new(aCenterCoordinate.X + 1, aCenterCoordinate.Y - 1))
-                || !IsCoordinateValid(aPuzzle, new(aCenterCoordinate.X + 1, aCenterCoordinate.Y + 1)))
+            const string WordToMatch = "MAS";
+
+            Coordinate[] upperLeftToBottomRight = [
+                new(aCenterCoordinate.X - 1, aCenterCoordinate.Y - 1),
+                new(aCenterCoordinate.X, aCenterCoordinate.Y),
+                new(aCenterCoordinate.X + 1, aCenterCoordinate.Y + 1),
+            ];
+            Coordinate[] bottomLeftToUpperRight = [
+                new(aCenterCoordinate.X - 1, aCenterCoordinate.Y + 1),
+                new(aCenterCoordinate.X, aCenterCoordinate.Y),
+                new(aCenterCoordinate.X + 1, aCenterCoordinate.Y - 1),
+            ];
+
+            if (!aMap.IsValidCoordinate(upperLeftToBottomRight) || !aMap.IsValidCoordinate(bottomLeftToUpperRight))
             {
                 return false;
             }
 
-            string word1 = aPuzzle[aCenterCoordinate.Y - 1][aCenterCoordinate.X - 1] + "A"
-                            + aPuzzle[aCenterCoordinate.Y + 1][aCenterCoordinate.X + 1];
-            string word2 = aPuzzle[aCenterCoordinate.Y + 1][aCenterCoordinate.X - 1] + "A"
-                            + aPuzzle[aCenterCoordinate.Y - 1][aCenterCoordinate.X + 1];
-            return (word1 == "MAS" || word1 == "SAM") && (word2 == "MAS" || word2 == "SAM");
+            string upperLeftToBottomRightWord = new(aMap[upperLeftToBottomRight]);
+            string bottomLeftToUpperRightWord = new(aMap[bottomLeftToUpperRight]);
+            return (upperLeftToBottomRightWord == WordToMatch
+                        || upperLeftToBottomRightWord == new string(WordToMatch.Reverse().ToArray()))
+                    && (bottomLeftToUpperRightWord == WordToMatch
+                        || bottomLeftToUpperRightWord == new string(WordToMatch.Reverse().ToArray()));
         }
     }
 }
