@@ -18,7 +18,7 @@
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
             int[][] updates = FilterUpdates(aInput, UpdateType.Invalid);
-            for(int i = 0; i < updates.Length;i++)
+            for (int i = 0; i < updates.Length; i++)
             {
                 List<int> sortedUpdates = new(updates[i]);
                 sortedUpdates.Sort(new UpdateSorter(GetRules(aInput)));

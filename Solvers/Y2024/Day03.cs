@@ -26,7 +26,8 @@ namespace AdventOfCode.Solvers.Y2024
         {
             uint sum = 0;
             bool enabled = true;
-            foreach(string memory in aMemory){
+            foreach (string memory in aMemory)
+            {
                 foreach (Match match in aRegex.Matches(memory))
                 {
                     if (match.Groups.ContainsKey("do") && match.Groups["do"].Success)
