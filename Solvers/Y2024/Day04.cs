@@ -9,7 +9,7 @@ namespace AdventOfCode.Solvers.Y2024
         public override ValueTask<string> SolvePart1(string[] aInput)
         {
             int count = 0;
-            Map<char> map = new(aInput, Map<char>.CharacterParser);
+            Map<char> map = Map<char>.GetCharacterMap(aInput);
             map.IterateColumnsRows(coordinate => count += CountXmasOccurrences(map, coordinate));
             return new(count.ToString());
         }
@@ -17,7 +17,7 @@ namespace AdventOfCode.Solvers.Y2024
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
             int count = 0;
-            Map<char> map = new(aInput, Map<char>.CharacterParser);
+            Map<char> map = Map<char>.GetCharacterMap(aInput);
             map.IterateColumnsRows(coordinate => count += IsValidXMas(map, coordinate) ? 1 : 0);
             return new(count.ToString());
         }
