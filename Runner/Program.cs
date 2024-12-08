@@ -1,4 +1,4 @@
-﻿using AoCHelper;
+using AoCHelper;
 using System.Reflection;
 
 List<Assembly> assemblies = [
@@ -6,7 +6,7 @@ List<Assembly> assemblies = [
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2021.BaseDay2021))!,
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2022.BaseDay2022))!,
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2023.BaseDay2023))!,
-    //Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2024.BaseDay2024))!,
+    Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2024.BaseDay2024))!,
 ];
 
 if (args.Length == 0)
