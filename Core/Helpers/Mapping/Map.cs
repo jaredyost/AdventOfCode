@@ -23,6 +23,22 @@
         #endregion
 
         #region Methods
+        public int Count()
+        {
+            return Count(x => x != null && x.Equals(true));
+        }
+
+        public int Count(Func<T, bool> aFilter)
+        {
+            int count = 0;
+            foreach (T item in Grid)
+            {
+                count += aFilter(item) ? 1 : 0;
+            }
+
+            return count;
+        }
+
         public Coordinate? Find(T aValue)
         {
             for (int y = 0; y < Height; y++)
@@ -64,13 +80,17 @@
             return !aCoordinates.Where(x => !IsValidCoordinate(x)).Any();
         }
 
-        public void IterateColumnsRows(Action<Coordinate> aIteratorCallback)
+        public void IterateColumnsRows(Action<Coordinate> aIteratorCallback, Func<Coordinate, bool>? aFilter = null)
         {
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    aIteratorCallback(new(x, y));
+                    Coordinate coordinate = new(x, y);
+                    if (aFilter == null || aFilter(coordinate))
+                    {
+                        aIteratorCallback(coordinate);
+                    }
                 }
             }
         }

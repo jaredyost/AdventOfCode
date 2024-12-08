@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Core.Helpers.Mapping
 {
-    public class Coordinate(int aX, int aY)
+    public class Coordinate(int aX, int aY) : IEquatable<Coordinate>
     {
         #region Properties
         public int X { get; set; } = aX;
@@ -8,20 +8,24 @@
         #endregion
 
         #region Methods
-        public override int GetHashCode()
-        {
-            return X.GetHashCode() + Y.GetHashCode();
-        }
-
         public override bool Equals(object? aOther)
         {
-            if (aOther == null || aOther is not Coordinate)
-            {
-                return false;
-            }
+            return aOther is Coordinate || Equals(aOther);
+        }
 
-            Coordinate other = (aOther as Coordinate)!;
-            return X == other.X && Y == other.Y;
+        public bool Equals(Coordinate? aOther)
+        {
+            return aOther is not null && X == aOther.X && Y == aOther.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
+
+        public override string ToString()
+        {
+            return $"({X}, {Y})";
         }
         #endregion
 
@@ -29,6 +33,26 @@
         public static Coordinate operator +(Coordinate aFirst, Coordinate aSecond)
         {
             return new(aFirst.X + aSecond.X, aFirst.Y + aSecond.Y);
+        }
+
+        public static Coordinate operator -(Coordinate aFirst, Coordinate aSecond)
+        {
+            return new(aFirst.X - aSecond.X, aFirst.Y - aSecond.Y);
+        }
+
+        public static Coordinate operator *(int aMultiplier, Coordinate aCoordinate)
+        {
+            return new(aCoordinate.X * aMultiplier, aCoordinate.Y * aMultiplier);
+        }
+
+        public static bool operator ==(Coordinate? aFirst, Coordinate? aSecond)
+        {
+            return aFirst?.Equals(aSecond) ?? aSecond?.Equals(aFirst) ?? false;
+        }
+
+        public static bool operator !=(Coordinate? aFirst, Coordinate? aSecond)
+        {
+            return !(aFirst == aSecond);
         }
         #endregion
     }
