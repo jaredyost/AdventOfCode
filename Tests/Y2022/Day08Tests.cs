@@ -12,13 +12,18 @@ namespace AdventOfCode.Tests.Y2022
             Day08 solver = new();
             string[] TestInput =
             [
+                "30373",
+                "25512",
+                "65332",
+                "33549",
+                "35390",
             ];
 
             // Act
             string result = await solver.SolvePart1(TestInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("21", result);
         }
 
         [TestMethod, Ignore]
@@ -34,7 +39,7 @@ namespace AdventOfCode.Tests.Y2022
             string result = await solver.SolvePart2(TestInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("8", result);
         }
 
         [TestMethod, Ignore]
@@ -47,7 +52,7 @@ namespace AdventOfCode.Tests.Y2022
             string result = await solver.SolvePart1(solver.ProblemInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("1684", result);
         }
 
         [TestMethod, Ignore]
@@ -60,7 +65,7 @@ namespace AdventOfCode.Tests.Y2022
             string result = await solver.SolvePart2(solver.ProblemInput);
 
             // Assert
-            Assert.AreEqual("", result);
+            Assert.AreEqual("486540", result);
         }
     }
 }
