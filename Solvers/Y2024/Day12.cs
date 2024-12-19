@@ -40,11 +40,7 @@ namespace AdventOfCode.Solvers.Y2024
                     plotInfo.Area++;
                     spots.Add(location);
 
-                    Coordinate[] neighbors = [
-                        new(location.X - 1, location.Y), new(location.X + 1, location.Y),
-                        new(location.X, location.Y - 1), new(location.X, location.Y + 1),
-                    ];
-                    foreach (Coordinate neighbor in neighbors.Where(x => !queue.Contains(x)))
+                    foreach (Coordinate neighbor in Coordinate.GetNeighbors(location).Where(x => !queue.Contains(x)))
                     {
                         if (!garden.IsValidCoordinate(neighbor) || garden[neighbor] != plotInfo.Plant)
                         {

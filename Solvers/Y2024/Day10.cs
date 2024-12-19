@@ -39,11 +39,7 @@ namespace AdventOfCode.Solvers.Y2024
                         continue;
                     }
 
-                    Coordinate[] neighbors = [
-                        new(location.X - 1, location.Y), new(location.X + 1, location.Y),
-                        new(location.X, location.Y - 1), new(location.X, location.Y + 1),
-                    ];
-                    foreach (Coordinate neighbor in neighbors)
+                    foreach (Coordinate neighbor in Coordinate.GetNeighbors(location))
                     {
                         if (!map.IsValidCoordinate(neighbor) || map[neighbor] - map[location] != 1)
                         {
