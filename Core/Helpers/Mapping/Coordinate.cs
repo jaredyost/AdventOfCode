@@ -7,6 +7,10 @@
         public int Y { get; set; } = aY;
         #endregion
 
+        #region Constructors
+        public Coordinate(string aX, string aY) : this(int.Parse(aX), int.Parse(aY)) {}
+        #endregion
+
         #region Methods
         public override bool Equals(object? aOther)
         {

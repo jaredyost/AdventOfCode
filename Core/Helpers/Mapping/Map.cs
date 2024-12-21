@@ -20,6 +20,18 @@
                 }
             }
         }
+
+        public Map(int aHeight, int aWidth, T aInitialValue)
+        {
+            Grid = new T[aHeight, aWidth];
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    this[x, y] = aInitialValue;
+                }
+            }
+        }
         #endregion
 
         #region Methods
