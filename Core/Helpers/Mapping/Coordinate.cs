@@ -49,6 +49,11 @@
             return new(aCoordinate.X * aMultiplier, aCoordinate.Y * aMultiplier);
         }
 
+        public static Coordinate operator *(Coordinate aCoordinate, int aMultiplier)
+        {
+            return aMultiplier * aCoordinate;
+        }
+
         public static bool operator ==(Coordinate? aFirst, Coordinate? aSecond)
         {
             return aFirst?.Equals(aSecond) ?? aSecond?.Equals(aFirst) ?? false;
