@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="AoCHelper" Version="4.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.1" />
   </ItemGroup>
 
 </Project>
