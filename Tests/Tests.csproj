@@ -1,26 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Authors>Jared Yost</Authors>
     <RootNamespace>AdventOfCode.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <WarningLevel>9999</WarningLevel>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <NoWarn />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <WarningLevel>9999</WarningLevel>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <NoWarn />
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,6 +23,6 @@
     <ProjectReference Include="..\Solvers\Y2022\Y2022.csproj" />
     <ProjectReference Include="..\Solvers\Y2023\Y2023.csproj" />
     <ProjectReference Include="..\Solvers\Y2024\Y2024.csproj" />
+    <ProjectReference Include="..\Solvers\Y2025\Y2025.csproj" />
   </ItemGroup>
-
 </Project>

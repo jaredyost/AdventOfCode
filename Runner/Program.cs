@@ -1,12 +1,14 @@
-﻿using AoCHelper;
-using System.Reflection;
+﻿using System.Reflection;
+using AoCHelper;
 
-List<Assembly> assemblies = [
+List<Assembly> assemblies =
+[
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2020.BaseDay2020))!,
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2021.BaseDay2021))!,
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2022.BaseDay2022))!,
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2023.BaseDay2023))!,
     Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2024.BaseDay2024))!,
+    Assembly.GetAssembly(typeof(AdventOfCode.Solvers.Y2025.BaseDay2025))!,
 ];
 
 if (args.Length == 0)
@@ -32,8 +34,8 @@ if (args.Length == 1 && args[0].Contains("all", StringComparison.CurrentCultureI
     return;
 }
 
-IEnumerable<uint> indexes = args.Select(arg => uint.TryParse(arg, out uint index) ? index : uint.MaxValue);
 await Solver.Solve(
-    indexes.Where(i => i < uint.MaxValue),
+    args.Select(arg => uint.TryParse(arg, out uint index) ? index : uint.MaxValue)
+        .Where(i => i < uint.MaxValue),
     options => options.ProblemAssemblies = [.. assemblies, .. options.ProblemAssemblies]
 );

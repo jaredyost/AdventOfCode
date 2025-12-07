@@ -1,0 +1,13 @@
+<Solution>
+  <Project Path="Core/Core.csproj" />
+  <Folder Name="/Solvers/">
+    <Project Path="Solvers/Y2020/Y2020.csproj" />
+    <Project Path="Solvers/Y2021/Y2021.csproj" />
+    <Project Path="Solvers/Y2022/Y2022.csproj" />
+    <Project Path="Solvers/Y2023/Y2023.csproj" />
+    <Project Path="Solvers/Y2024/Y2024.csproj" />
+    <Project Path="Solvers/Y2025/Y2025.csproj" />
+  </Folder>
+  <Project Path="Runner/Runner.csproj" />
+  <Project Path="Tests/Tests.csproj" />
+</Solution>
