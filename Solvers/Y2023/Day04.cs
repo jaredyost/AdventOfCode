@@ -24,7 +24,10 @@
 
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
-            List<Card> cards = aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => new Card(x)).ToList();
+            List<Card> cards = aInput
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .Select(x => new Card(x))
+                .ToList();
             for (int i = cards.Count - 1; i >= 0; i--)
             {
                 cards[i].CardsAdded += cards[i].WinningSelections.Count();
@@ -47,13 +50,23 @@
             {
                 IEnumerable<string> split = aInput.Split([':', '|']).Select(x => x.Trim());
 
-                ID = int.Parse(split.ElementAt(0).Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).ElementAt(1));
-                WinningSelections = SplitNumbers(split.ElementAt(2)).Where(x => SplitNumbers(split.ElementAt(1)).Contains(x));
+                ID = int.Parse(
+                    split
+                        .ElementAt(0)
+                        .Split(' ')
+                        .Where(x => !string.IsNullOrWhiteSpace(x))
+                        .ElementAt(1)
+                );
+                WinningSelections = SplitNumbers(split.ElementAt(2))
+                    .Where(x => SplitNumbers(split.ElementAt(1)).Contains(x));
             }
 
             private static IEnumerable<int> SplitNumbers(string aInput)
             {
-                return aInput.Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).Select(int.Parse);
+                return aInput
+                    .Split(' ')
+                    .Where(x => !string.IsNullOrWhiteSpace(x))
+                    .Select(int.Parse);
             }
         }
     }

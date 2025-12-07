@@ -31,18 +31,28 @@ namespace AdventOfCode.Solvers.Y2024
             {
                 for (int i = 0; i < blankLine; i++)
                 {
-                    providedMap[i] = aInformation[i].Replace("#", "##").Replace("O", "[]").Replace(".", "..").Replace("@", "@.");
+                    providedMap[i] = aInformation[i]
+                        .Replace("#", "##")
+                        .Replace("O", "[]")
+                        .Replace(".", "..")
+                        .Replace("@", "@.");
                 }
             }
 
             Map<char> map = Map<char>.GetCharacterMap(providedMap);
             for (int i = blankLine + 1; i < aInformation.Length; i++)
             {
-                aInformation[i].ToCharArray().ToList().ForEach(direction => MoveRobot(map, direction));
+                aInformation[i]
+                    .ToCharArray()
+                    .ToList()
+                    .ForEach(direction => MoveRobot(map, direction));
             }
 
             int gpsCoordinates = 0;
-            map.IterateColumnsRows(coordinate => gpsCoordinates += (100 * coordinate.Y) + coordinate.X, coordinate => "O[".Contains(map[coordinate]));
+            map.IterateColumnsRows(
+                coordinate => gpsCoordinates += (100 * coordinate.Y) + coordinate.X,
+                coordinate => "O[".Contains(map[coordinate])
+            );
             return gpsCoordinates;
         }
 
@@ -83,7 +93,12 @@ namespace AdventOfCode.Solvers.Y2024
             }
         }
 
-        private static bool CanMove(Map<char> aMap, Coordinate aItemLocation, Coordinate aVelocity, List<Coordinate> aBoxesToMove)
+        private static bool CanMove(
+            Map<char> aMap,
+            Coordinate aItemLocation,
+            Coordinate aVelocity,
+            List<Coordinate> aBoxesToMove
+        )
         {
             Coordinate nextCoordinate = aItemLocation + aVelocity;
             if (!aMap.IsValidCoordinate(nextCoordinate))
@@ -107,7 +122,10 @@ namespace AdventOfCode.Solvers.Y2024
                     bool canMove = CanMove(aMap, nextCoordinate, aVelocity, aBoxesToMove);
                     if (canMove && aVelocity.Y != 0 && "[]".Contains(aMap[nextCoordinate]))
                     {
-                        Coordinate sideCoordinate = new(nextCoordinate.X + (aMap[nextCoordinate] == ']' ? -1 : 1), nextCoordinate.Y);
+                        Coordinate sideCoordinate = new(
+                            nextCoordinate.X + (aMap[nextCoordinate] == ']' ? -1 : 1),
+                            nextCoordinate.Y
+                        );
                         canMove = CanMove(aMap, sideCoordinate, aVelocity, aBoxesToMove);
 
                         if (canMove && !aBoxesToMove.Contains(sideCoordinate))

@@ -12,9 +12,11 @@ namespace AdventOfCode.Tests.Y2020
             Day02 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "1-3 a: abcde",
                 "1-3 b: cdefg",
                 "2-9 c: ccccccccc",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -31,9 +33,11 @@ namespace AdventOfCode.Tests.Y2020
             Day02 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "1-3 a: abcde",
                 "1-3 b: cdefg",
                 "2-9 c: ccccccccc",
+                // csharpier-ignore-end
             ];
 
             // Act

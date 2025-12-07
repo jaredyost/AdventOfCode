@@ -18,12 +18,20 @@ namespace AdventOfCode.Solvers.Y2023
 
         private static string[][] ParseMap(string[] aInput, int aGrowthFactor)
         {
-            string[][] map = aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.ToCharArray()).Select(x => x.Select(x => x.ToString()).ToArray()).ToArray();
+            string[][] map = aInput
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .Select(x => x.ToCharArray())
+                .Select(x => x.Select(x => x.ToString()).ToArray())
+                .ToArray();
 
             // Expand the empty space
             for (int x = 0; x < map[0].Length; x++)
             {
-                if (!map.Select(row => row[x]).Where(x => !x.Equals(".") && !x.Equals(aGrowthFactor.ToString())).Any())
+                if (
+                    !map.Select(row => row[x])
+                        .Where(x => !x.Equals(".") && !x.Equals(aGrowthFactor.ToString()))
+                        .Any()
+                )
                 {
                     for (int y = 0; y < map.Length; y++)
                     {
@@ -38,7 +46,9 @@ namespace AdventOfCode.Solvers.Y2023
                 {
                     for (int x = 0; x < map[y].Length; x++)
                     {
-                        map[y][x] = map[y][x].Equals(aGrowthFactor.ToString()) ? (2 * aGrowthFactor).ToString() : aGrowthFactor.ToString();
+                        map[y][x] = map[y][x].Equals(aGrowthFactor.ToString())
+                            ? (2 * aGrowthFactor).ToString()
+                            : aGrowthFactor.ToString();
                     }
                 }
             }

@@ -26,7 +26,11 @@ namespace AdventOfCode.Solvers.Y2023
                 for (int x = 0; x < map[y].Length; x++)
                 {
                     Point point = new(x, y);
-                    if (!path.Contains(point) && CountHorizontalIntersections(map, path, point) % 2 != 0 && CountVerticalIntersections(map, path, point) % 2 != 0)
+                    if (
+                        !path.Contains(point)
+                        && CountHorizontalIntersections(map, path, point) % 2 != 0
+                        && CountVerticalIntersections(map, path, point) % 2 != 0
+                    )
                     {
                         enclosedAmount++;
                     }
@@ -43,7 +47,9 @@ namespace AdventOfCode.Solvers.Y2023
 
             char[] topBottomRow = new string('.', aInput[0].Length + 2).ToCharArray();
             map.Add(topBottomRow);
-            map.AddRange(aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => $".{x}.".ToCharArray()));
+            map.AddRange(
+                aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => $".{x}.".ToCharArray())
+            );
             map.Add(topBottomRow);
 
             return [.. map];
@@ -71,25 +77,37 @@ namespace AdventOfCode.Solvers.Y2023
             char currentSymbol = aMap[aCoordinate.Y][aCoordinate.X];
 
             // Above
-            if ("S|LJ".Contains(currentSymbol) && "|7F".Contains(aMap[aCoordinate.Y - 1][aCoordinate.X]))
+            if (
+                "S|LJ".Contains(currentSymbol)
+                && "|7F".Contains(aMap[aCoordinate.Y - 1][aCoordinate.X])
+            )
             {
                 adjacents.Add(new(aCoordinate.X, aCoordinate.Y - 1));
             }
 
             // Below
-            if ("S|7F".Contains(currentSymbol) && "|LJ".Contains(aMap[aCoordinate.Y + 1][aCoordinate.X]))
+            if (
+                "S|7F".Contains(currentSymbol)
+                && "|LJ".Contains(aMap[aCoordinate.Y + 1][aCoordinate.X])
+            )
             {
                 adjacents.Add(new(aCoordinate.X, aCoordinate.Y + 1));
             }
 
             // Left
-            if ("S-7J".Contains(currentSymbol) && "-LF".Contains(aMap[aCoordinate.Y][aCoordinate.X - 1]))
+            if (
+                "S-7J".Contains(currentSymbol)
+                && "-LF".Contains(aMap[aCoordinate.Y][aCoordinate.X - 1])
+            )
             {
                 adjacents.Add(new(aCoordinate.X - 1, aCoordinate.Y));
             }
 
             // Right
-            if ("S-LF".Contains(currentSymbol) && "-7J".Contains(aMap[aCoordinate.Y][aCoordinate.X + 1]))
+            if (
+                "S-LF".Contains(currentSymbol)
+                && "-7J".Contains(aMap[aCoordinate.Y][aCoordinate.X + 1])
+            )
             {
                 adjacents.Add(new(aCoordinate.X + 1, aCoordinate.Y));
             }
@@ -102,7 +120,8 @@ namespace AdventOfCode.Solvers.Y2023
             List<Point> path = [FindStart(aMap)];
             while (true)
             {
-                Point? next = FindAdjacents(aMap, path.Last()).FirstOrDefault(x => path.Count < 2 || !x.Equals(path[path.Count - 2]));
+                Point? next = FindAdjacents(aMap, path.Last())
+                    .FirstOrDefault(x => path.Count < 2 || !x.Equals(path[path.Count - 2]));
 
                 if (next == null || next.Equals(path[0]) || next.Value.IsEmpty)
                 {
@@ -161,7 +180,11 @@ namespace AdventOfCode.Solvers.Y2023
             throw new ArgumentException("The map/coordinate pair was invalid");
         }
 
-        private static int CountHorizontalIntersections(char[][] aMap, List<Point> aPath, Point aCoordinate)
+        private static int CountHorizontalIntersections(
+            char[][] aMap,
+            List<Point> aPath,
+            Point aCoordinate
+        )
         {
             char? lastBend = null;
             int intersectionCount = 0;
@@ -206,7 +229,11 @@ namespace AdventOfCode.Solvers.Y2023
             return intersectionCount;
         }
 
-        private static int CountVerticalIntersections(char[][] aMap, List<Point> aPath, Point aCoordinate)
+        private static int CountVerticalIntersections(
+            char[][] aMap,
+            List<Point> aPath,
+            Point aCoordinate
+        )
         {
             char? lastBend = null;
             int intersectionCount = 0;

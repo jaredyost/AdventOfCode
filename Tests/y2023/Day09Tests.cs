@@ -12,9 +12,11 @@ namespace AdventOfCode.Tests.Y2023
             Day09 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "0 3 6 9 12 15",
                 "1 3 6 10 15 21",
                 "10 13 16 21 30 45",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -31,9 +33,11 @@ namespace AdventOfCode.Tests.Y2023
             Day09 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "0 3 6 9 12 15",
                 "1 3 6 10 15 21",
                 "10 13 16 21 30 45",
+                // csharpier-ignore-end
             ];
 
             // Act

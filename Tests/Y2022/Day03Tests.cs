@@ -12,6 +12,8 @@ namespace AdventOfCode.Tests.Y2022
             Day03 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -28,6 +30,8 @@ namespace AdventOfCode.Tests.Y2022
             Day03 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
+                // csharpier-ignore-end
             ];
 
             // Act

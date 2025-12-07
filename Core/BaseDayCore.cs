@@ -1,6 +1,6 @@
-﻿using AoCHelper;
+﻿using System.Reflection;
+using AoCHelper;
 using Microsoft.Extensions.Configuration;
-using System.Reflection;
 
 namespace AdventOfCode.Core
 {
@@ -26,8 +26,16 @@ namespace AdventOfCode.Core
                 "Inputs",
                 $"Y{Year}D{Day:D2}.txt"
             );
-        public sealed override ValueTask<string> Solve_1() { return SolvePart1(ProblemInput); }
-        public sealed override ValueTask<string> Solve_2() { return SolvePart2(ProblemInput); }
+
+        public sealed override ValueTask<string> Solve_1()
+        {
+            return SolvePart1(ProblemInput);
+        }
+
+        public sealed override ValueTask<string> Solve_2()
+        {
+            return SolvePart2(ProblemInput);
+        }
 
         // Helpers
         private string[] LoadInput()
@@ -40,13 +48,24 @@ namespace AdventOfCode.Core
                     "github.com/jaredyost/AdventOfCode by jaredyost@me.com"
                 );
 
-                IConfigurationRoot config = new ConfigurationBuilder().AddUserSecrets(Assembly.GetExecutingAssembly()).Build();
+                IConfigurationRoot config = new ConfigurationBuilder()
+                    .AddUserSecrets(Assembly.GetExecutingAssembly())
+                    .Build();
                 httpClient.DefaultRequestHeaders.Add("cookie", $"session={config["session"]}");
 
-                HttpResponseMessage response = Task.Run(() => httpClient.GetAsync($"/{Year}/day/{Day}/input")).Result;
+                HttpResponseMessage response = Task.Run(() =>
+                    httpClient.GetAsync($"/{Year}/day/{Day}/input")
+                ).Result;
                 _ = response.EnsureSuccessStatusCode();
 
-                using (FileStream fileStream = new(InputFilePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                using (
+                    FileStream fileStream = new(
+                        InputFilePath,
+                        FileMode.OpenOrCreate,
+                        FileAccess.Write,
+                        FileShare.None
+                    )
+                )
                 {
                     response.Content.ReadAsStream().CopyTo(fileStream);
                 }
@@ -54,7 +73,16 @@ namespace AdventOfCode.Core
                 // This is a little hacky, but copy this back to our user-facing directory
                 File.Copy(
                     InputFilePath,
-                    Path.Combine("..", "..", "..", "..", "Solvers", $"Y{Year}", "Inputs", Path.GetFileName(InputFilePath)),
+                    Path.Combine(
+                        "..",
+                        "..",
+                        "..",
+                        "..",
+                        "Solvers",
+                        $"Y{Year}",
+                        "Inputs",
+                        Path.GetFileName(InputFilePath)
+                    ),
                     true
                 );
             }

@@ -22,9 +22,10 @@
             Tuple<int[], int[]> columns = GetColumns(aInput);
             foreach (int number in columns.Item1.Distinct())
             {
-                similarityScore += number
-                                    * columns.Item1.Where(x => x == number).Count()
-                                    * columns.Item2.Where(x => x == number).Count();
+                similarityScore +=
+                    number
+                    * columns.Item1.Where(x => x == number).Count()
+                    * columns.Item2.Where(x => x == number).Count();
             }
 
             return new(similarityScore.ToString());
@@ -32,8 +33,18 @@
 
         private static Tuple<int[], int[]> GetColumns(string[] aLists)
         {
-            int[] firstColumn = [.. aLists.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0])).Order()];
-            int[] secondColumn = [.. aLists.Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1])).Order()];
+            int[] firstColumn =
+            [
+                .. aLists
+                    .Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0]))
+                    .Order(),
+            ];
+            int[] secondColumn =
+            [
+                .. aLists
+                    .Select(x => int.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1]))
+                    .Order(),
+            ];
             return new(firstColumn, secondColumn);
         }
     }

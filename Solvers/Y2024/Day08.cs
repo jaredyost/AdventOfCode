@@ -26,25 +26,42 @@ namespace AdventOfCode.Solvers.Y2024
         {
             Map<char> antennas = Map<char>.GetCharacterMap(aGrid);
             Map<bool> antinodes = new(aGrid, x => false);
-            antennas.IterateColumnsRows(coordinate =>
-                antennas.IterateColumnsRows(secondCoordinate =>
-                {
-                    Coordinate distance = secondCoordinate - coordinate;
-                    if (aSpacing == Spacing.DistanceRequired)
-                    {
-                        _ = CheckAndPlaceAntinode(ref antinodes, coordinate - distance);
-                        _ = CheckAndPlaceAntinode(ref antinodes, coordinate + (2 * distance));
-                        return;
-                    }
+            antennas.IterateColumnsRows(
+                coordinate =>
+                    antennas.IterateColumnsRows(
+                        secondCoordinate =>
+                        {
+                            Coordinate distance = secondCoordinate - coordinate;
+                            if (aSpacing == Spacing.DistanceRequired)
+                            {
+                                _ = CheckAndPlaceAntinode(ref antinodes, coordinate - distance);
+                                _ = CheckAndPlaceAntinode(
+                                    ref antinodes,
+                                    coordinate + (2 * distance)
+                                );
+                                return;
+                            }
 
-                    bool backwards = true, forwards = true;
-                    for (int i = 0; backwards || forwards; i++)
-                    {
-                        backwards = CheckAndPlaceAntinode(ref antinodes, coordinate - (i * distance));
-                        forwards = CheckAndPlaceAntinode(ref antinodes, coordinate + (i * distance));
-                    }
-                }, secondCoordinate => coordinate != secondCoordinate && antennas[coordinate] == antennas[secondCoordinate]),
-                coordinate => antennas[coordinate] != '.');
+                            bool backwards = true,
+                                forwards = true;
+                            for (int i = 0; backwards || forwards; i++)
+                            {
+                                backwards = CheckAndPlaceAntinode(
+                                    ref antinodes,
+                                    coordinate - (i * distance)
+                                );
+                                forwards = CheckAndPlaceAntinode(
+                                    ref antinodes,
+                                    coordinate + (i * distance)
+                                );
+                            }
+                        },
+                        secondCoordinate =>
+                            coordinate != secondCoordinate
+                            && antennas[coordinate] == antennas[secondCoordinate]
+                    ),
+                coordinate => antennas[coordinate] != '.'
+            );
 
             return antinodes;
         }

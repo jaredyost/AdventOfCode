@@ -34,7 +34,10 @@ namespace AdventOfCode.Solvers.Y2020
             {
                 string row = boardingPass.Substring(0, 7).Replace('B', '1').Replace('F', '0');
                 string column = boardingPass.Substring(7, 3).Replace('R', '1').Replace('L', '0');
-                seatIds.Add((int.Parse(row, NumberStyles.BinaryNumber) * 8) + int.Parse(column, NumberStyles.BinaryNumber));
+                seatIds.Add(
+                    (int.Parse(row, NumberStyles.BinaryNumber) * 8)
+                        + int.Parse(column, NumberStyles.BinaryNumber)
+                );
             }
 
             return [.. seatIds.OrderDescending()];

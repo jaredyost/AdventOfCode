@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Core.Helpers.Mapping
+namespace AdventOfCode.Core.Helpers.Mapping
 {
     public class Map<T>
     {
@@ -84,7 +84,7 @@
         public bool IsValidCoordinate(Coordinate aCoordinate)
         {
             return MathUtilities.InRange(aCoordinate.X, 0, Width - 1)
-                    && MathUtilities.InRange(aCoordinate.Y, 0, Height - 1);
+                && MathUtilities.InRange(aCoordinate.Y, 0, Height - 1);
         }
 
         public bool IsValidCoordinate(Coordinate[] aCoordinates)
@@ -92,7 +92,10 @@
             return !aCoordinates.Where(x => !IsValidCoordinate(x)).Any();
         }
 
-        public void IterateColumnsRows(Action<Coordinate> aIteratorCallback, Func<Coordinate, bool>? aFilter = null)
+        public void IterateColumnsRows(
+            Action<Coordinate> aIteratorCallback,
+            Func<Coordinate, bool>? aFilter = null
+        )
         {
             for (int y = 0; y < Height; y++)
             {
@@ -147,7 +150,6 @@
                 }
                 return values;
             }
-
             set
             {
                 for (int i = 0; i < aCoordinates.Length; i++)

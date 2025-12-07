@@ -50,7 +50,10 @@
 
         private static string[][] ParseMap(string[] aInput)
         {
-            List<List<string>> maps = [[]];
+            List<List<string>> maps =
+            [
+                [],
+            ];
             foreach (string line in aInput)
             {
                 if (string.IsNullOrEmpty(line))
@@ -147,7 +150,9 @@
                 bool valid = true;
                 for (int j = 1; i - j >= 0 && i + j - 1 < aMap[0].Length && valid; j++)
                 {
-                    valid = string.Join("", aMap.Select(x => x[i - j]).ToArray()) == string.Join("", aMap.Select(x => x[i + j - 1]).ToArray());
+                    valid =
+                        string.Join("", aMap.Select(x => x[i - j]).ToArray())
+                        == string.Join("", aMap.Select(x => x[i + j - 1]).ToArray());
                 }
 
                 if (valid)

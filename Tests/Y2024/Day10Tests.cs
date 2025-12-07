@@ -12,6 +12,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "...0...",
                 "...1...",
                 "...2...",
@@ -19,6 +20,7 @@ namespace AdventOfCode.Tests.Y2024
                 "7.....7",
                 "8.....8",
                 "9.....9",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -35,6 +37,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "..90..9",
                 "...1.98",
                 "...2..7",
@@ -42,6 +45,7 @@ namespace AdventOfCode.Tests.Y2024
                 "765.987",
                 "876....",
                 "987....",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -58,6 +62,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "10..9..",
                 "2...8..",
                 "3...7..",
@@ -65,6 +70,7 @@ namespace AdventOfCode.Tests.Y2024
                 "...8..3",
                 "...9..2",
                 ".....01",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -81,6 +87,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "89010123",
                 "78121874",
                 "87430965",
@@ -89,6 +96,7 @@ namespace AdventOfCode.Tests.Y2024
                 "32019012",
                 "01329801",
                 "10456732",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -105,6 +113,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 ".....0.",
                 "..4321.",
                 "..5..2.",
@@ -112,6 +121,7 @@ namespace AdventOfCode.Tests.Y2024
                 "..7..4.",
                 "..8765.",
                 "..9....",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -128,6 +138,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "..90..9",
                 "...1.98",
                 "...2..7",
@@ -135,6 +146,7 @@ namespace AdventOfCode.Tests.Y2024
                 "765.987",
                 "876....",
                 "987....",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -151,12 +163,14 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "012345",
                 "123456",
                 "234567",
                 "345678",
                 "4.6789",
                 "56789.",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -173,6 +187,7 @@ namespace AdventOfCode.Tests.Y2024
             Day10 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "89010123",
                 "78121874",
                 "87430965",
@@ -181,6 +196,7 @@ namespace AdventOfCode.Tests.Y2024
                 "32019012",
                 "01329801",
                 "10456732",
+                // csharpier-ignore-end
             ];
 
             // Act

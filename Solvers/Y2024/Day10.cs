@@ -26,37 +26,43 @@ namespace AdventOfCode.Solvers.Y2024
         {
             TrailInfo trailInfo = new();
             Map<char> map = Map<char>.GetCharacterMap(aGrid);
-            map.IterateColumnsRows(trailhead =>
-            {
-                Queue<Coordinate> queue = new(new Coordinate[] { trailhead });
-                Dictionary<Coordinate, int> visited = new() { { trailhead, 1 } };
-                while (queue.TryDequeue(out Coordinate? location))
+            map.IterateColumnsRows(
+                trailhead =>
                 {
-                    if (map[location] == '9')
+                    Queue<Coordinate> queue = new(new Coordinate[] { trailhead });
+                    Dictionary<Coordinate, int> visited = new() { { trailhead, 1 } };
+                    while (queue.TryDequeue(out Coordinate? location))
                     {
-                        trailInfo.Summits++;
-                        trailInfo.Trails += visited[location];
-                        continue;
-                    }
-
-                    foreach (Coordinate neighbor in Coordinate.GetNeighbors(location))
-                    {
-                        if (!map.IsValidCoordinate(neighbor) || map[neighbor] - map[location] != 1)
+                        if (map[location] == '9')
                         {
+                            trailInfo.Summits++;
+                            trailInfo.Trails += visited[location];
                             continue;
                         }
 
-                        if (visited.ContainsKey(neighbor))
+                        foreach (Coordinate neighbor in Coordinate.GetCrossNeighbors(location))
                         {
-                            visited[neighbor] += visited[location];
-                            continue;
-                        }
+                            if (
+                                !map.IsValidCoordinate(neighbor)
+                                || map[neighbor] - map[location] != 1
+                            )
+                            {
+                                continue;
+                            }
 
-                        visited.Add(neighbor, visited[location]);
-                        queue.Enqueue(neighbor);
+                            if (visited.ContainsKey(neighbor))
+                            {
+                                visited[neighbor] += visited[location];
+                                continue;
+                            }
+
+                            visited.Add(neighbor, visited[location]);
+                            queue.Enqueue(neighbor);
+                        }
                     }
-                }
-            }, coordinate => map[coordinate] == '0');
+                },
+                coordinate => map[coordinate] == '0'
+            );
 
             return trailInfo;
         }

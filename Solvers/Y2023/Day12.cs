@@ -41,7 +41,9 @@ namespace AdventOfCode.Solvers.Y2023
                     unfoldedSplit[1] += ',' + split[1];
                 }
 
-                records.Add(new(unfoldedSplit[0], [.. unfoldedSplit[1].Split(',').Select(int.Parse)]));
+                records.Add(
+                    new(unfoldedSplit[0], [.. unfoldedSplit[1].Split(',').Select(int.Parse)])
+                );
             }
 
             ulong sum = 0;
@@ -77,10 +79,12 @@ namespace AdventOfCode.Solvers.Y2023
                 numArrangements += CalculateArrangements(aMap[1..], aGroups);
             }
 
-            if ("#?".Contains(aMap[0])
+            if (
+                "#?".Contains(aMap[0])
                 && aGroups[0] <= aMap.Length
                 && !aMap.Substring(0, aGroups[0]).Contains('.')
-                && (aGroups[0] == aMap.Length || aMap[aGroups[0]] != '#'))
+                && (aGroups[0] == aMap.Length || aMap[aGroups[0]] != '#')
+            )
             {
                 string newMap = "";
                 if (aGroups[0] + 1 < aMap.Length)

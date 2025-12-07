@@ -45,86 +45,106 @@ namespace AdventOfCode.Solvers.Y2020
         {
             if (ValidatePassportFieldCount(aPassport))
             {
-                List<string> data = [.. aPassport.Split(' ', StringSplitOptions.RemoveEmptyEntries)];
+                List<string> data =
+                [
+                    .. aPassport.Split(' ', StringSplitOptions.RemoveEmptyEntries),
+                ];
                 foreach (string entry in data)
                 {
                     string[] pieces = entry.Split(':');
                     switch (pieces[0])
                     {
                         case "byr":
-                        {
-                            int year = int.Parse(pieces[1]);
-                            if (year < 1920 || year > 2002)
                             {
-                                return false;
+                                int year = int.Parse(pieces[1]);
+                                if (year < 1920 || year > 2002)
+                                {
+                                    return false;
+                                }
                             }
-                        }
-                        break;
+                            break;
 
                         case "iyr":
-                        {
-                            int year = int.Parse(pieces[1]);
-                            if (year < 2010 || year > 2020)
                             {
-                                return false;
+                                int year = int.Parse(pieces[1]);
+                                if (year < 2010 || year > 2020)
+                                {
+                                    return false;
+                                }
                             }
-                        }
-                        break;
+                            break;
 
                         case "eyr":
-                        {
-                            int year = int.Parse(pieces[1]);
-                            if (year < 2020 || year > 2030)
                             {
-                                return false;
+                                int year = int.Parse(pieces[1]);
+                                if (year < 2020 || year > 2030)
+                                {
+                                    return false;
+                                }
                             }
-                        }
-                        break;
+                            break;
 
                         case "hgt":
-                        {
-                            string units = pieces[1].Substring(pieces[1].Length - 2);
-                            switch (units)
                             {
-                                case "cm":
+                                string units = pieces[1].Substring(pieces[1].Length - 2);
+                                switch (units)
                                 {
-                                    int height = int.Parse(pieces[1].Substring(0, pieces[1].Length - 2));
-                                    if (height < 150 || height > 193)
-                                    {
-                                        return false;
-                                    }
-                                }
-                                break;
+                                    case "cm":
+                                        {
+                                            int height = int.Parse(
+                                                pieces[1].Substring(0, pieces[1].Length - 2)
+                                            );
+                                            if (height < 150 || height > 193)
+                                            {
+                                                return false;
+                                            }
+                                        }
+                                        break;
 
-                                case "in":
-                                {
-                                    int height = int.Parse(pieces[1].Substring(0, pieces[1].Length - 2));
-                                    if (height < 59 || height > 76)
-                                    {
-                                        return false;
-                                    }
-                                }
-                                break;
+                                    case "in":
+                                        {
+                                            int height = int.Parse(
+                                                pieces[1].Substring(0, pieces[1].Length - 2)
+                                            );
+                                            if (height < 59 || height > 76)
+                                            {
+                                                return false;
+                                            }
+                                        }
+                                        break;
 
-                                default:
-                                    return false;
+                                    default:
+                                        return false;
+                                }
                             }
-                        }
-                        break;
+                            break;
 
                         case "hcl":
-                            if (pieces[1].Length < 7 ||
-                                pieces[1][0] != '#' ||
-                                !int.TryParse(pieces[1].AsSpan(1), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out _))
+                            if (
+                                pieces[1].Length < 7
+                                || pieces[1][0] != '#'
+                                || !int.TryParse(
+                                    pieces[1].AsSpan(1),
+                                    NumberStyles.HexNumber,
+                                    CultureInfo.CurrentCulture,
+                                    out _
+                                )
+                            )
                             {
                                 return false;
                             }
                             break;
 
                         case "ecl":
-                            if (pieces[1] != "amb" && pieces[1] != "blu" && pieces[1] != "brn" &&
-                                pieces[1] != "gry" && pieces[1] != "grn" && pieces[1] != "hzl" &&
-                                pieces[1] != "oth")
+                            if (
+                                pieces[1] != "amb"
+                                && pieces[1] != "blu"
+                                && pieces[1] != "brn"
+                                && pieces[1] != "gry"
+                                && pieces[1] != "grn"
+                                && pieces[1] != "hzl"
+                                && pieces[1] != "oth"
+                            )
                             {
                                 return false;
                             }

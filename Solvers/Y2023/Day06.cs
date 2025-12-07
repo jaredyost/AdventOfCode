@@ -26,10 +26,27 @@
 
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
-            Race race = new
-            (
-                long.Parse(string.Join("", aInput[0].Split(' ').Where(x => long.TryParse(x, out _)).Select(long.Parse).ToArray())),
-                long.Parse(string.Join("", aInput[1].Split(' ').Where(x => long.TryParse(x, out _)).Select(long.Parse).ToArray()))
+            Race race = new(
+                long.Parse(
+                    string.Join(
+                        "",
+                        aInput[0]
+                            .Split(' ')
+                            .Where(x => long.TryParse(x, out _))
+                            .Select(long.Parse)
+                            .ToArray()
+                    )
+                ),
+                long.Parse(
+                    string.Join(
+                        "",
+                        aInput[1]
+                            .Split(' ')
+                            .Where(x => long.TryParse(x, out _))
+                            .Select(long.Parse)
+                            .ToArray()
+                    )
+                )
             );
 
             long count = 0;
@@ -51,8 +68,16 @@
 
             public static Race[] ParseRaces(string[] aInput)
             {
-                long[] times = aInput[0].Split(' ').Where(x => long.TryParse(x, out _)).Select(long.Parse).ToArray();
-                long[] distances = aInput[1].Split(' ').Where(x => long.TryParse(x, out _)).Select(long.Parse).ToArray();
+                long[] times = aInput[0]
+                    .Split(' ')
+                    .Where(x => long.TryParse(x, out _))
+                    .Select(long.Parse)
+                    .ToArray();
+                long[] distances = aInput[1]
+                    .Split(' ')
+                    .Where(x => long.TryParse(x, out _))
+                    .Select(long.Parse)
+                    .ToArray();
 
                 List<Race> races = [];
                 for (int i = 0; i < times.Length; i++)

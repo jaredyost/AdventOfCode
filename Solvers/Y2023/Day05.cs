@@ -8,7 +8,9 @@
         {
             long min = long.MaxValue;
             Farm farm = new(aInput[1..]);
-            foreach (long seed in aInput[0].Split(':')[1].Trim().Split(' ').Select(long.Parse).ToArray())
+            foreach (
+                long seed in aInput[0].Split(':')[1].Trim().Split(' ').Select(long.Parse).ToArray()
+            )
             {
                 min = long.Min(min, farm.ProcessSeed(seed));
             }
@@ -19,7 +21,12 @@
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
             List<Range> ranges = [];
-            long[] rawSeeds = aInput[0].Split(':')[1].Trim().Split(' ').Select(long.Parse).ToArray();
+            long[] rawSeeds = aInput[0]
+                .Split(':')[1]
+                .Trim()
+                .Split(' ')
+                .Select(long.Parse)
+                .ToArray();
             for (int i = 0; i < rawSeeds.Length; i += 2)
             {
                 ranges.Add(new($"0 {rawSeeds[i]} {rawSeeds[i + 1]}"));
@@ -83,12 +90,19 @@
                         long lastEnd = seedRange.SourceStart;
                         foreach (Range mapRange in map.Ranges.OrderBy(x => x.SourceStart))
                         {
-                            if (mapRange.SourceEnd > seedRange.SourceStart && mapRange.SourceStart < seedRange.SourceEnd)
+                            if (
+                                mapRange.SourceEnd > seedRange.SourceStart
+                                && mapRange.SourceStart < seedRange.SourceEnd
+                            )
                             {
                                 // Create the new range
                                 long start = long.Max(seedRange.SourceStart, mapRange.SourceStart);
                                 long end = long.Min(seedRange.SourceEnd, mapRange.SourceEnd);
-                                newSeedRanges.Add(new($"0 {start + mapRange.DestinationStart - mapRange.SourceStart} {end - start}"));
+                                newSeedRanges.Add(
+                                    new(
+                                        $"0 {start + mapRange.DestinationStart - mapRange.SourceStart} {end - start}"
+                                    )
+                                );
 
                                 // Check if there are any gaps to carry forward
                                 if (lastEnd != start)
@@ -115,7 +129,11 @@
 
             private class Map(List<string> aInput)
             {
-                public Range[] Ranges { get; } = aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => new Range(x)).ToArray();
+                public Range[] Ranges { get; } =
+                    aInput
+                        .Where(x => !string.IsNullOrWhiteSpace(x))
+                        .Select(x => new Range(x))
+                        .ToArray();
 
                 public long ProcessMap(long aSeed)
                 {
@@ -152,7 +170,9 @@
 
             public long MapSeed(long aSeed)
             {
-                return aSeed >= SourceStart && aSeed < SourceEnd ? DestinationStart + (aSeed - SourceStart) : aSeed;
+                return aSeed >= SourceStart && aSeed < SourceEnd
+                    ? DestinationStart + (aSeed - SourceStart)
+                    : aSeed;
             }
         }
     }

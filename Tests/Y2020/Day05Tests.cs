@@ -12,10 +12,12 @@ namespace AdventOfCode.Tests.Y2020
             Day05 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "FBFBBFFRLR",
                 "BFFFBBFRRR",
                 "FFFBBBFRRR",
                 "BBFFBBFRLL",
+                // csharpier-ignore-end
             ];
 
             // Act

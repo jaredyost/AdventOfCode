@@ -22,9 +22,12 @@ namespace AdventOfCode.Solvers.Y2024
             return new(GetPrice(aInput, 10000000000000).ToString());
         }
 
-        [GeneratedRegex(@"Button A: X\+(?<ax>[0-9]+), Y\+(?<ay>[0-9]+)\n"
-                        + @"Button B: X\+(?<bx>[0-9]+), Y\+(?<by>[0-9]+)\n"
-                        + @"Prize: X=(?<px>[0-9]+), Y=(?<py>[0-9]+)", RegexOptions.Compiled)]
+        [GeneratedRegex(
+            @"Button A: X\+(?<ax>[0-9]+), Y\+(?<ay>[0-9]+)\n"
+                + @"Button B: X\+(?<bx>[0-9]+), Y\+(?<by>[0-9]+)\n"
+                + @"Prize: X=(?<px>[0-9]+), Y=(?<py>[0-9]+)",
+            RegexOptions.Compiled
+        )]
         private static partial Regex PrizeMachineRegex();
 
         private static long GetPrice(string[] aMachines, long aPrizeOffset = 0)
@@ -46,8 +49,10 @@ namespace AdventOfCode.Solvers.Y2024
                 long aPresses = ((prize.X * bMovement.Y) - (prize.Y * bMovement.X)) / determinant;
                 long bPresses = ((aMovement.X * prize.Y) - (aMovement.Y * prize.X)) / determinant;
 
-                if ((aPresses * aMovement.X) + (bPresses * bMovement.X) == prize.X
-                    && (aPresses * aMovement.Y) + (bPresses * bMovement.Y) == prize.Y)
+                if (
+                    (aPresses * aMovement.X) + (bPresses * bMovement.X) == prize.X
+                    && (aPresses * aMovement.Y) + (bPresses * bMovement.Y) == prize.Y
+                )
                 {
                     price += (3 * aPresses) + bPresses;
                 }

@@ -30,6 +30,7 @@
 
         private class Hand
         {
+            // csharpier-ignore-start
             public enum WinType
             {
                 // Lowest
@@ -44,6 +45,7 @@
 
                 Count,
             }
+            // csharpier-ignore-end
 
             public enum JType
             {

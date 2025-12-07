@@ -1,6 +1,5 @@
-﻿using AdventOfCode.Core.Helpers.Mapping;
-using System.Text.RegularExpressions;
-
+﻿using System.Text.RegularExpressions;
+using AdventOfCode.Core.Helpers.Mapping;
 #if DEBUG
 using System.Diagnostics;
 #endif
@@ -11,7 +10,8 @@ namespace AdventOfCode.Solvers.Y2024
     {
         protected override int Day => 14;
 
-        public Day14() : this(101, 103) {}
+        public Day14()
+            : this(101, 103) { }
 
         private readonly Coordinate Room = new(aWidth, aHeight);
 
@@ -71,7 +71,10 @@ namespace AdventOfCode.Solvers.Y2024
             return new((minimum.Item2 + 1).ToString());
         }
 
-        [GeneratedRegex(@"p=(?<px>[0-9]+),(?<py>[0-9]+) v=(?<vx>-?[0-9]+),(?<vy>-?[0-9]+)", RegexOptions.Compiled)]
+        [GeneratedRegex(
+            @"p=(?<px>[0-9]+),(?<py>[0-9]+) v=(?<vx>-?[0-9]+),(?<vy>-?[0-9]+)",
+            RegexOptions.Compiled
+        )]
         private static partial Regex RobotRegex();
 
         private static List<Robot> GetRobots(string[] aInformation)
@@ -79,8 +82,12 @@ namespace AdventOfCode.Solvers.Y2024
             List<Robot> robots = [];
             foreach (Match match in RobotRegex().Matches(string.Join('\n', aInformation)))
             {
-                robots.Add(new(new(match.Groups["px"].Value, match.Groups["py"].Value),
-                                new(match.Groups["vx"].Value, match.Groups["vy"].Value)));
+                robots.Add(
+                    new(
+                        new(match.Groups["px"].Value, match.Groups["py"].Value),
+                        new(match.Groups["vx"].Value, match.Groups["vy"].Value)
+                    )
+                );
             }
 
             return robots;
@@ -88,7 +95,11 @@ namespace AdventOfCode.Solvers.Y2024
 
         private int CalculateSafetyScore(List<Robot> aRobots)
         {
-            int[,] quadrants = { { 0, 0 }, { 0, 0 } };
+            int[,] quadrants =
+            {
+                { 0, 0 },
+                { 0, 0 },
+            };
             foreach (Robot robot in aRobots)
             {
                 if (robot.Position.X == Room.X / 2 || robot.Position.Y == Room.Y / 2)

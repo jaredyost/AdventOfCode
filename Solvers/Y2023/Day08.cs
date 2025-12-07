@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using System.Text.RegularExpressions;
-
 using NodeDirections = System.Tuple<string, string>;
 
 namespace AdventOfCode.Solvers.Y2023
@@ -16,9 +15,16 @@ namespace AdventOfCode.Solvers.Y2023
 
             int stepCount = 1;
             NodeDirections nodeDirections = nodes["AAA"];
-            for (int currentDirection = 0; ; currentDirection = (currentDirection + 1) % directions.Length, stepCount++)
+            for (
+                int currentDirection = 0;
+                ;
+                currentDirection = (currentDirection + 1) % directions.Length, stepCount++
+            )
             {
-                string nextNode = directions[currentDirection] == 'L' ? nodeDirections.Item1 : nodeDirections.Item2;
+                string nextNode =
+                    directions[currentDirection] == 'L'
+                        ? nodeDirections.Item1
+                        : nodeDirections.Item2;
                 if (nextNode == "ZZZ")
                 {
                     break;
@@ -39,10 +45,19 @@ namespace AdventOfCode.Solvers.Y2023
             for (int i = 0; i < stespToFinish.Length; i++)
             {
                 ulong stepCount = 1;
-                NodeDirections nodeDirections = nodes[nodes.Where(x => x.Key.EndsWith('A')).ElementAt(i).Key];
-                for (int currentDirection = 0; ; currentDirection = (currentDirection + 1) % directions.Length, stepCount++)
+                NodeDirections nodeDirections = nodes[
+                    nodes.Where(x => x.Key.EndsWith('A')).ElementAt(i).Key
+                ];
+                for (
+                    int currentDirection = 0;
+                    ;
+                    currentDirection = (currentDirection + 1) % directions.Length, stepCount++
+                )
                 {
-                    string nextNode = directions[currentDirection] == 'L' ? nodeDirections.Item1 : nodeDirections.Item2;
+                    string nextNode =
+                        directions[currentDirection] == 'L'
+                            ? nodeDirections.Item1
+                            : nodeDirections.Item2;
                     if (nextNode.EndsWith('Z'))
                     {
                         break;
@@ -66,14 +81,20 @@ namespace AdventOfCode.Solvers.Y2023
                 MatchCollection matches = regex.Matches(node);
                 if (matches.Count > 0 && matches[0].Groups.Count == 4)
                 {
-                    nodes.Add(matches[0].Groups[1].Value, new NodeDirections(matches[0].Groups[2].Value, matches[0].Groups[3].Value));
+                    nodes.Add(
+                        matches[0].Groups[1].Value,
+                        new NodeDirections(matches[0].Groups[2].Value, matches[0].Groups[3].Value)
+                    );
                 }
             }
 
             return nodes;
         }
 
-        [GeneratedRegex(@"^([A-Za-z0-9]+)\s+=\s+\(([A-Za-z0-9]+),\s+([A-Za-z0-9]+)\)$", RegexOptions.Compiled)]
+        [GeneratedRegex(
+            @"^([A-Za-z0-9]+)\s+=\s+\(([A-Za-z0-9]+),\s+([A-Za-z0-9]+)\)$",
+            RegexOptions.Compiled
+        )]
         private static partial Regex NodeRegex();
 
         private static ulong CalculateLeastCommonMultiple(ulong[] aInput)
@@ -81,7 +102,10 @@ namespace AdventOfCode.Solvers.Y2023
             ulong multiple = aInput[0];
             for (int i = 1; i < aInput.Length; i++)
             {
-                multiple = multiple * aInput[i] / (ulong)BigInteger.GreatestCommonDivisor(multiple, aInput[i]);
+                multiple =
+                    multiple
+                    * aInput[i]
+                    / (ulong)BigInteger.GreatestCommonDivisor(multiple, aInput[i]);
             }
 
             return multiple;

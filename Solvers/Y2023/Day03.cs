@@ -12,7 +12,10 @@
             {
                 for (int column = 0; column < engineMap[row].Length; column++)
                 {
-                    if (!char.IsLetterOrDigit(engineMap[row][column]) && engineMap[row][column] != '.')
+                    if (
+                        !char.IsLetterOrDigit(engineMap[row][column])
+                        && engineMap[row][column] != '.'
+                    )
                     {
                         // Check the rows above and below this symbol
                         for (int testRow = -1; testRow <= 1; testRow++)
@@ -26,7 +29,12 @@
                                     do
                                     {
                                         testColumn--;
-                                    } while ((column + testColumn) >= 0 && char.IsNumber(engineMap[row + testRow][column + testColumn]));
+                                    } while (
+                                        (column + testColumn) >= 0
+                                        && char.IsNumber(
+                                            engineMap[row + testRow][column + testColumn]
+                                        )
+                                    );
                                     testColumn++;
 
                                     // Create the number
@@ -35,7 +43,12 @@
                                     {
                                         number += engineMap[row + testRow][column + testColumn];
                                         testColumn++;
-                                    } while ((column + testColumn) < engineMap[row].Length && char.IsNumber(engineMap[row + testRow][column + testColumn]));
+                                    } while (
+                                        (column + testColumn) < engineMap[row].Length
+                                        && char.IsNumber(
+                                            engineMap[row + testRow][column + testColumn]
+                                        )
+                                    );
                                     sum += int.Parse(number);
                                 }
                             }
@@ -70,7 +83,12 @@
                                     do
                                     {
                                         testColumn--;
-                                    } while ((column + testColumn) >= 0 && char.IsNumber(engineMap[row + testRow][column + testColumn]));
+                                    } while (
+                                        (column + testColumn) >= 0
+                                        && char.IsNumber(
+                                            engineMap[row + testRow][column + testColumn]
+                                        )
+                                    );
                                     testColumn++;
 
                                     // Create the number
@@ -79,7 +97,12 @@
                                     {
                                         number += engineMap[row + testRow][column + testColumn];
                                         testColumn++;
-                                    } while ((column + testColumn) < engineMap[row].Length && char.IsNumber(engineMap[row + testRow][column + testColumn]));
+                                    } while (
+                                        (column + testColumn) < engineMap[row].Length
+                                        && char.IsNumber(
+                                            engineMap[row + testRow][column + testColumn]
+                                        )
+                                    );
                                     numbers.Add(int.Parse(number));
                                 }
                             }
@@ -103,7 +126,9 @@
 
             char[] topBottomRow = new string('.', aInput[0].Length + 2).ToCharArray();
             engineMap.Add(topBottomRow);
-            engineMap.AddRange(aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => $".{x}.".ToCharArray()));
+            engineMap.AddRange(
+                aInput.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => $".{x}.".ToCharArray())
+            );
             engineMap.Add(topBottomRow);
 
             return [.. engineMap];

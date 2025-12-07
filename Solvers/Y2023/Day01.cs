@@ -4,7 +4,10 @@
     {
         protected override int Day => 1;
 
-        private static readonly IReadOnlyDictionary<string, string> Numbers = new Dictionary<string, string>
+        private static readonly IReadOnlyDictionary<string, string> Numbers = new Dictionary<
+            string,
+            string
+        >
         {
             // We need to maintain the first/last letter in case there's overlapping words
             { "one", "o1e" },
@@ -23,7 +26,9 @@
             int total = 0;
             foreach (string line in aInput.Where(x => !string.IsNullOrWhiteSpace(x)))
             {
-                IEnumerable<int> numbers = line.ToCharArray().Where(char.IsDigit).Select(x => int.Parse(x.ToString()));
+                IEnumerable<int> numbers = line.ToCharArray()
+                    .Where(char.IsDigit)
+                    .Select(x => int.Parse(x.ToString()));
                 if (numbers.Any())
                 {
                     total += (10 * numbers.First()) + numbers.Last();
@@ -45,8 +50,10 @@
                     bool modified = false;
                     foreach (KeyValuePair<string, string> number in Numbers)
                     {
-                        if (line.Substring(i).Length >= number.Key.Length
-                            && number.Key.Equals(line.Substring(i, number.Key.Length)))
+                        if (
+                            line.Substring(i).Length >= number.Key.Length
+                            && number.Key.Equals(line.Substring(i, number.Key.Length))
+                        )
                         {
                             newLine += number.Value;
                             modified = true;

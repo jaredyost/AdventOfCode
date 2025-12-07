@@ -19,7 +19,9 @@ namespace AdventOfCode.Solvers.Y2024
 
         public override ValueTask<string> SolvePart2(string[] aInput)
         {
-            return new(aInput.Where(x => IsReportSafe(x, ErrorTolerance.Single)).Count().ToString());
+            return new(
+                aInput.Where(x => IsReportSafe(x, ErrorTolerance.Single)).Count().ToString()
+            );
         }
 
         private static bool IsReportSafe(string aReport, ErrorTolerance aErrorTolerance)
@@ -34,8 +36,9 @@ namespace AdventOfCode.Solvers.Y2024
             for (int i = 1; i < aLevels.Count && isSafe; i++)
             {
                 int difference = aLevels[i] - aLevels[i - 1];
-                isSafe = MathUtilities.SameSigns(factor, difference)
-                            && MathUtilities.InRange(Math.Abs(difference), 1, 3);
+                isSafe =
+                    MathUtilities.SameSigns(factor, difference)
+                    && MathUtilities.InRange(Math.Abs(difference), 1, 3);
             }
 
             if (!isSafe && aErrorTolerance == ErrorTolerance.Single)

@@ -19,7 +19,10 @@ namespace AdventOfCode.Solvers.Y2024
         [GeneratedRegex(@"mul\((?<left>[0-9]+),(?<right>[0-9]+)\)", RegexOptions.Compiled)]
         private static partial Regex SimpleMultiplyRegex();
 
-        [GeneratedRegex(@"mul\((?<left>[0-9]+),(?<right>[0-9]+)\)|(?<do>do\(\))|(?<dont>don't\(\))", RegexOptions.Compiled)]
+        [GeneratedRegex(
+            @"mul\((?<left>[0-9]+),(?<right>[0-9]+)\)|(?<do>do\(\))|(?<dont>don't\(\))",
+            RegexOptions.Compiled
+        )]
         private static partial Regex ComplexMultiplyRegex();
 
         private static uint ProcessMemory(string[] aMemory, Regex aRegex)
@@ -44,7 +47,9 @@ namespace AdventOfCode.Solvers.Y2024
 
                     if (enabled)
                     {
-                        sum += uint.Parse(match.Groups["left"].Value) * uint.Parse(match.Groups["right"].Value);
+                        sum +=
+                            uint.Parse(match.Groups["left"].Value)
+                            * uint.Parse(match.Groups["right"].Value);
                     }
                 }
             }

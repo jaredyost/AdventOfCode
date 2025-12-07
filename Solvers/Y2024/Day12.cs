@@ -30,65 +30,95 @@ namespace AdventOfCode.Solvers.Y2024
 
             List<PlotInfo> plots = [];
             List<Coordinate> visited = [];
-            garden.IterateColumnsRows(plot =>
-            {
-                PlotInfo plotInfo = new(garden[plot]);
-                List<Coordinate> spots = [];
-                Queue<Coordinate> queue = new(new Coordinate[] { plot });
-                while (queue.TryDequeue(out Coordinate? location))
+            garden.IterateColumnsRows(
+                plot =>
                 {
-                    plotInfo.Area++;
-                    spots.Add(location);
-
-                    foreach (Coordinate neighbor in Coordinate.GetNeighbors(location).Where(x => !queue.Contains(x)))
+                    PlotInfo plotInfo = new(garden[plot]);
+                    List<Coordinate> spots = [];
+                    Queue<Coordinate> queue = new(new Coordinate[] { plot });
+                    while (queue.TryDequeue(out Coordinate? location))
                     {
-                        if (!garden.IsValidCoordinate(neighbor) || garden[neighbor] != plotInfo.Plant)
+                        plotInfo.Area++;
+                        spots.Add(location);
+
+                        foreach (
+                            Coordinate neighbor in Coordinate
+                                .GetCrossNeighbors(location)
+                                .Where(x => !queue.Contains(x))
+                        )
                         {
-                            plotInfo.Perimeter++;
-                            continue;
+                            if (
+                                !garden.IsValidCoordinate(neighbor)
+                                || garden[neighbor] != plotInfo.Plant
+                            )
+                            {
+                                plotInfo.Perimeter++;
+                                continue;
+                            }
+
+                            if (!spots.Contains(neighbor))
+                            {
+                                queue.Enqueue(neighbor);
+                            }
+                        }
+                    }
+
+                    foreach (Coordinate spot in spots)
+                    {
+                        // Top
+                        if (
+                            !spots.Contains(new(spot.X, spot.Y - 1))
+                            && (
+                                !spots.Contains(new(spot.X - 1, spot.Y))
+                                || spots.Contains(new(spot.X - 1, spot.Y - 1))
+                            )
+                        )
+                        {
+                            plotInfo.Sides++;
                         }
 
-                        if (!spots.Contains(neighbor))
+                        // Right
+                        if (
+                            !spots.Contains(new(spot.X + 1, spot.Y))
+                            && (
+                                !spots.Contains(new(spot.X, spot.Y - 1))
+                                || spots.Contains(new(spot.X + 1, spot.Y - 1))
+                            )
+                        )
                         {
-                            queue.Enqueue(neighbor);
+                            plotInfo.Sides++;
+                        }
+
+                        // Bottom
+                        if (
+                            !spots.Contains(new(spot.X, spot.Y + 1))
+                            && (
+                                !spots.Contains(new(spot.X - 1, spot.Y))
+                                || spots.Contains(new(spot.X - 1, spot.Y + 1))
+                            )
+                        )
+                        {
+                            plotInfo.Sides++;
+                        }
+
+                        // Left
+                        if (
+                            !spots.Contains(new(spot.X - 1, spot.Y))
+                            && (
+                                !spots.Contains(new(spot.X, spot.Y - 1))
+                                || spots.Contains(new(spot.X - 1, spot.Y - 1))
+                            )
+                        )
+                        {
+                            plotInfo.Sides++;
                         }
                     }
-                }
 
-                foreach (Coordinate spot in spots)
-                {
-                    // Top
-                    if (!spots.Contains(new(spot.X, spot.Y - 1)) && (!spots.Contains(new(spot.X - 1, spot.Y))
-                                                                    || spots.Contains(new(spot.X - 1, spot.Y - 1))))
-                    {
-                        plotInfo.Sides++;
-                    }
-
-                    // Right
-                    if (!spots.Contains(new(spot.X + 1, spot.Y)) && (!spots.Contains(new(spot.X, spot.Y - 1))
-                                                                    || spots.Contains(new(spot.X + 1, spot.Y - 1))))
-                    {
-                        plotInfo.Sides++;
-                    }
-
-                    // Bottom
-                    if (!spots.Contains(new(spot.X, spot.Y + 1)) && (!spots.Contains(new(spot.X - 1, spot.Y))
-                                                                    || spots.Contains(new(spot.X - 1, spot.Y + 1))))
-                    {
-                        plotInfo.Sides++;
-                    }
-
-                    // Left
-                    if (!spots.Contains(new(spot.X - 1, spot.Y)) && (!spots.Contains(new(spot.X, spot.Y - 1))
-                                                                    || spots.Contains(new(spot.X - 1, spot.Y - 1))))
-                    {
-                        plotInfo.Sides++;
-                    }
-                }
-
-                plots.Add(plotInfo);
-                visited = [.. visited.Concat(spots)];
-            }, plot => !visited.Contains(plot));
+                    plots.Add(plotInfo);
+                    visited = [.. visited.Concat(spots)];
+                },
+                plot => !visited.Contains(plot)
+            );
 
             return [.. plots];
         }

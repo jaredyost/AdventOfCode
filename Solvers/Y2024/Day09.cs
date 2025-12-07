@@ -78,7 +78,11 @@
             List<int> disk = [];
             int currentBlockId = 0;
             bool isFreeSpace = false;
-            foreach (int size in aDiskMap.SelectMany(x => x.ToCharArray()).Select(x => int.Parse(x.ToString())))
+            foreach (
+                int size in aDiskMap
+                    .SelectMany(x => x.ToCharArray())
+                    .Select(x => int.Parse(x.ToString()))
+            )
             {
                 for (int i = 0; i < size; i++)
                 {

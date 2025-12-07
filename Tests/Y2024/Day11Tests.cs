@@ -12,7 +12,9 @@ namespace AdventOfCode.Tests.Y2024
             Day11 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "125 17",
+                // csharpier-ignore-end
             ];
 
             // Act

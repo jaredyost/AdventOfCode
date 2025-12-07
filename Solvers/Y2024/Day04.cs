@@ -44,10 +44,16 @@ namespace AdventOfCode.Solvers.Y2024
                     Coordinate[] coordinates = new Coordinate[4];
                     for (int i = 0; i < coordinates.Length; i++)
                     {
-                        coordinates[i] = new(aCoordinate.X + (xAdjust * i), aCoordinate.Y + (yAdjust * i));
+                        coordinates[i] = new(
+                            aCoordinate.X + (xAdjust * i),
+                            aCoordinate.Y + (yAdjust * i)
+                        );
                     }
 
-                    if (aMap.IsValidCoordinate(coordinates) && new string(aMap[coordinates]) == WordToMatch)
+                    if (
+                        aMap.IsValidCoordinate(coordinates)
+                        && new string(aMap[coordinates]) == WordToMatch
+                    )
                     {
                         count++;
                     }
@@ -61,28 +67,37 @@ namespace AdventOfCode.Solvers.Y2024
         {
             const string WordToMatch = "MAS";
 
-            Coordinate[] upperLeftToBottomRight = [
+            Coordinate[] upperLeftToBottomRight =
+            [
                 new(aCenterCoordinate.X - 1, aCenterCoordinate.Y - 1),
                 new(aCenterCoordinate.X, aCenterCoordinate.Y),
                 new(aCenterCoordinate.X + 1, aCenterCoordinate.Y + 1),
             ];
-            Coordinate[] bottomLeftToUpperRight = [
+            Coordinate[] bottomLeftToUpperRight =
+            [
                 new(aCenterCoordinate.X - 1, aCenterCoordinate.Y + 1),
                 new(aCenterCoordinate.X, aCenterCoordinate.Y),
                 new(aCenterCoordinate.X + 1, aCenterCoordinate.Y - 1),
             ];
 
-            if (!aMap.IsValidCoordinate(upperLeftToBottomRight) || !aMap.IsValidCoordinate(bottomLeftToUpperRight))
+            if (
+                !aMap.IsValidCoordinate(upperLeftToBottomRight)
+                || !aMap.IsValidCoordinate(bottomLeftToUpperRight)
+            )
             {
                 return false;
             }
 
             string upperLeftToBottomRightWord = new(aMap[upperLeftToBottomRight]);
             string bottomLeftToUpperRightWord = new(aMap[bottomLeftToUpperRight]);
-            return (upperLeftToBottomRightWord == WordToMatch
-                        || upperLeftToBottomRightWord == new string(WordToMatch.Reverse().ToArray()))
-                    && (bottomLeftToUpperRightWord == WordToMatch
-                        || bottomLeftToUpperRightWord == new string(WordToMatch.Reverse().ToArray()));
+            return (
+                    upperLeftToBottomRightWord == WordToMatch
+                    || upperLeftToBottomRightWord == new string(WordToMatch.Reverse().ToArray())
+                )
+                && (
+                    bottomLeftToUpperRightWord == WordToMatch
+                    || bottomLeftToUpperRightWord == new string(WordToMatch.Reverse().ToArray())
+                );
         }
     }
 }

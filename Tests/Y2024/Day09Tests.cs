@@ -12,7 +12,9 @@ namespace AdventOfCode.Tests.Y2024
             Day09 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "2333133121414131402",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -29,7 +31,9 @@ namespace AdventOfCode.Tests.Y2024
             Day09 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "2333133121414131402",
+                // csharpier-ignore-end
             ];
 
             // Act

@@ -12,12 +12,14 @@ namespace AdventOfCode.Tests.Y2020
             Day01 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "1721",
                 "979",
                 "366",
                 "299",
                 "675",
                 "1456",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -34,12 +36,15 @@ namespace AdventOfCode.Tests.Y2020
             Day01 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "1721",
                 "979",
                 "366",
                 "299",
                 "675",
+
                 "1456",
+                // csharpier-ignore-end
             ];
 
             // Act

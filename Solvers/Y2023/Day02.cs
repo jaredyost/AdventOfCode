@@ -6,7 +6,12 @@
 
         public override ValueTask<string> SolvePart1(string[] aInput)
         {
-            return new(Game.ParseGames(aInput).Where(x => x.Red <= 12 && x.Green <= 13 && x.Blue <= 14).Sum(x => x.ID).ToString());
+            return new(
+                Game.ParseGames(aInput)
+                    .Where(x => x.Red <= 12 && x.Green <= 13 && x.Blue <= 14)
+                    .Sum(x => x.ID)
+                    .ToString()
+            );
         }
 
         public override ValueTask<string> SolvePart2(string[] aInput)

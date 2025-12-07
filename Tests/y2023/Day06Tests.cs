@@ -12,8 +12,10 @@ namespace AdventOfCode.Tests.Y2023
             Day06 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "Time:      7  15   30",
                 "Distance:  9  40  200",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -30,8 +32,10 @@ namespace AdventOfCode.Tests.Y2023
             Day06 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "Time:      7  15   30",
                 "Distance:  9  40  200",
+                // csharpier-ignore-end
             ];
 
             // Act

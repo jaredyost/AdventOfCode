@@ -12,10 +12,12 @@ namespace AdventOfCode.Tests.Y2023
             Day01 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "1abc2",
                 "npqr3stu8vwx",
                 "a1b2c3d4e5f",
                 "treb7uchet",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -32,6 +34,7 @@ namespace AdventOfCode.Tests.Y2023
             Day01 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "two1nine",
                 "eightwothree",
                 "abcone2threexyz",
@@ -39,6 +42,7 @@ namespace AdventOfCode.Tests.Y2023
                 "4nineeightseven2",
                 "zoneight234",
                 "7pqrstsixteen",
+                // csharpier-ignore-end
             ];
 
             // Act

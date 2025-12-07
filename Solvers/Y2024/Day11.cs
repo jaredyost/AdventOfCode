@@ -20,7 +20,11 @@ namespace AdventOfCode.Solvers.Y2024
         {
             BigInteger count = 0;
             Dictionary<Tuple<BigInteger, int>, BigInteger> cache = [];
-            foreach (BigInteger rock in aRocks.SelectMany(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries)).Select(BigInteger.Parse))
+            foreach (
+                BigInteger rock in aRocks
+                    .SelectMany(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                    .Select(BigInteger.Parse)
+            )
             {
                 count += Blink(rock, aNumberBlinks, cache);
             }
@@ -28,7 +32,11 @@ namespace AdventOfCode.Solvers.Y2024
             return count;
         }
 
-        private static BigInteger Blink(BigInteger aRock, int aNumberBlinks, Dictionary<Tuple<BigInteger, int>, BigInteger> aCache)
+        private static BigInteger Blink(
+            BigInteger aRock,
+            int aNumberBlinks,
+            Dictionary<Tuple<BigInteger, int>, BigInteger> aCache
+        )
         {
             BigInteger count = 1;
             Tuple<BigInteger, int> cacheKey = new(aRock, aNumberBlinks);
@@ -42,10 +50,23 @@ namespace AdventOfCode.Solvers.Y2024
                 else
                 {
                     string numberString = aRock.ToString();
-                    count = numberString.Length % 2 == 0
-                        ? Blink(BigInteger.Parse(numberString.Substring(0, numberString.Length / 2)), aNumberBlinks - 1, aCache)
-                            + Blink(BigInteger.Parse(numberString.Substring(numberString.Length / 2)), aNumberBlinks - 1, aCache)
-                        : Blink(aRock * 2024, aNumberBlinks - 1, aCache);
+                    count =
+                        numberString.Length % 2 == 0
+                            ? Blink(
+                                BigInteger.Parse(
+                                    numberString.Substring(0, numberString.Length / 2)
+                                ),
+                                aNumberBlinks - 1,
+                                aCache
+                            )
+                                + Blink(
+                                    BigInteger.Parse(
+                                        numberString.Substring(numberString.Length / 2)
+                                    ),
+                                    aNumberBlinks - 1,
+                                    aCache
+                                )
+                            : Blink(aRock * 2024, aNumberBlinks - 1, aCache);
                 }
 
                 aCache.Add(cacheKey, count);

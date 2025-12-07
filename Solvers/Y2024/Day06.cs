@@ -37,23 +37,31 @@ namespace AdventOfCode.Solvers.Y2024
 
         private static Coordinate[]? WalkGuardRoute(Map<char> aMap)
         {
-            Dictionary<char, Coordinate> Movements = new() {
-                {'^', new(0, -1) },
-                {'>', new(1, 0) },
-                {'v', new(0, 1) },
-                {'<', new(-1, 0) },
+            Dictionary<char, Coordinate> Movements = new()
+            {
+                { '^', new(0, -1) },
+                { '>', new(1, 0) },
+                { 'v', new(0, 1) },
+                { '<', new(-1, 0) },
             };
 
             Coordinate currentCoordinate = aMap.First([.. Movements.Keys])!;
             Coordinate nextCoordinate = currentCoordinate + Movements[aMap[currentCoordinate]];
 
-            Dictionary<Coordinate, string> path = new() { { currentCoordinate, aMap[currentCoordinate].ToString() } };
+            Dictionary<Coordinate, string> path = new()
+            {
+                { currentCoordinate, aMap[currentCoordinate].ToString() },
+            };
             while (aMap.IsValidCoordinate(nextCoordinate))
             {
                 if (aMap[nextCoordinate] == '#')
                 {
-                    int currentDirectionIndex = Movements.Keys.ToList().IndexOf(aMap[currentCoordinate]);
-                    aMap[currentCoordinate] = Movements.Keys.ElementAt((currentDirectionIndex + 1) % Movements.Count);
+                    int currentDirectionIndex = Movements
+                        .Keys.ToList()
+                        .IndexOf(aMap[currentCoordinate]);
+                    aMap[currentCoordinate] = Movements.Keys.ElementAt(
+                        (currentDirectionIndex + 1) % Movements.Count
+                    );
                 }
                 else
                 {

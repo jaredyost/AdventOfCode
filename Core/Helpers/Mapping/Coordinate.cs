@@ -8,7 +8,8 @@
         #endregion
 
         #region Constructors
-        public Coordinate(string aX, string aY) : this(int.Parse(aX), int.Parse(aY)) {}
+        public Coordinate(string aX, string aY)
+            : this(int.Parse(aX), int.Parse(aY)) { }
         #endregion
 
         #region Methods
@@ -68,9 +69,12 @@
         #region Functions
         public static Coordinate[] GetCrossNeighbors(Coordinate aCoordinate)
         {
-            return [
-                new(aCoordinate.X - 1, aCoordinate.Y), new(aCoordinate.X + 1, aCoordinate.Y),
-                new(aCoordinate.X, aCoordinate.Y - 1), new(aCoordinate.X, aCoordinate.Y + 1),
+            return
+            [
+                new(aCoordinate.X - 1, aCoordinate.Y),
+                new(aCoordinate.X + 1, aCoordinate.Y),
+                new(aCoordinate.X, aCoordinate.Y - 1),
+                new(aCoordinate.X, aCoordinate.Y + 1),
             ];
         }
 

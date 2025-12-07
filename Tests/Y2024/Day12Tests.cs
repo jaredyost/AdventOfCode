@@ -12,10 +12,12 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "AAAA",
                 "BBCD",
                 "BBCC",
                 "EEEC",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -32,11 +34,13 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "OOOOO",
                 "OXOXO",
                 "OOOOO",
                 "OXOXO",
                 "OOOOO",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -79,10 +83,12 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "AAAA",
                 "BBCD",
                 "BBCC",
                 "EEEC",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -99,11 +105,13 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "OOOOO",
                 "OXOXO",
                 "OOOOO",
                 "OXOXO",
                 "OOOOO",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -120,11 +128,13 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "EEEEE",
                 "EXXXX",
                 "EEEEE",
                 "EXXXX",
                 "EEEEE",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -141,12 +151,14 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "AAAAAA",
                 "AAABBA",
                 "AAABBA",
                 "ABBAAA",
                 "ABBAAA",
                 "AAAAAA",
+                // csharpier-ignore-end
             ];
 
             // Act
@@ -163,6 +175,7 @@ namespace AdventOfCode.Tests.Y2024
             Day12 solver = new();
             string[] TestInput =
             [
+                // csharpier-ignore-start
                 "RRRRIICCFF",
                 "RRRRIICCCF",
                 "VVRRRCCFFF",
@@ -173,6 +186,7 @@ namespace AdventOfCode.Tests.Y2024
                 "MIIIIIJJEE",
                 "MIIISIJEEE",
                 "MMMISSJEEE",
+                // csharpier-ignore-end
             ];
 
             // Act

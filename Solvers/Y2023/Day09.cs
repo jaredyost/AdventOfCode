@@ -34,7 +34,10 @@
 
         private static int Extrapolate(string aInput, ExtrapolateDirection aDirection)
         {
-            List<List<int>> readings = [[.. aInput.Split().Select(int.Parse)]];
+            List<List<int>> readings =
+            [
+                [.. aInput.Split().Select(int.Parse)],
+            ];
 
             // Calculate all the differences
             while (readings.Last().Where(x => x != 0).Any())
@@ -51,7 +54,10 @@
             int lastDifference = 0;
             for (int i = readings.Count - 2; i >= 0; i--)
             {
-                lastDifference = aDirection == ExtrapolateDirection.Backwards ? readings[i].First() - lastDifference : readings[i].Last() + lastDifference;
+                lastDifference =
+                    aDirection == ExtrapolateDirection.Backwards
+                        ? readings[i].First() - lastDifference
+                        : readings[i].Last() + lastDifference;
             }
 
             return lastDifference;

@@ -62,8 +62,10 @@
             bool valid = true;
             for (int i = 0; i < aUpdate.Length && valid; i++)
             {
-                Tuple<int, int>[] applicableRules = [.. aRules.Where(x => aUpdate[i] == x.Item1
-                                                                        && aUpdate.Contains(x.Item2))];
+                Tuple<int, int>[] applicableRules =
+                [
+                    .. aRules.Where(x => aUpdate[i] == x.Item1 && aUpdate.Contains(x.Item2)),
+                ];
                 for (int j = 0; j < applicableRules.Length && valid; j++)
                 {
                     valid = i < Array.IndexOf(aUpdate, applicableRules[j].Item2);
@@ -80,7 +82,10 @@
             foreach (int[] update in GetUpdates(aUpdate))
             {
                 bool valid = IsUpdateValid(update, rules);
-                if ((aUpdateType == UpdateType.Valid && valid) || (aUpdateType == UpdateType.Invalid && !valid))
+                if (
+                    (aUpdateType == UpdateType.Valid && valid)
+                    || (aUpdateType == UpdateType.Invalid && !valid)
+                )
                 {
                     reports.Add(update);
                 }
