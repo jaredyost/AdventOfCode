@@ -66,12 +66,28 @@
         #endregion
 
         #region Functions
-        public static Coordinate[] GetNeighbors(Coordinate aCoordinate)
+        public static Coordinate[] GetCrossNeighbors(Coordinate aCoordinate)
         {
             return [
                 new(aCoordinate.X - 1, aCoordinate.Y), new(aCoordinate.X + 1, aCoordinate.Y),
                 new(aCoordinate.X, aCoordinate.Y - 1), new(aCoordinate.X, aCoordinate.Y + 1),
             ];
+        }
+
+        public static Coordinate[] GetDiagonalNeighbors(Coordinate aCoordinate)
+        {
+            return
+            [
+                new(aCoordinate.X - 1, aCoordinate.Y - 1),
+                new(aCoordinate.X + 1, aCoordinate.Y - 1),
+                new(aCoordinate.X - 1, aCoordinate.Y + 1),
+                new(aCoordinate.X + 1, aCoordinate.Y + 1),
+            ];
+        }
+
+        public static Coordinate[] GetAllNeighbors(Coordinate aCoordinate)
+        {
+            return [.. GetCrossNeighbors(aCoordinate), .. GetDiagonalNeighbors(aCoordinate)];
         }
         #endregion
     }
