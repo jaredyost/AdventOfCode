@@ -15,7 +15,7 @@
         #region Methods
         public override bool Equals(object? aOther)
         {
-            return aOther is Coordinate || Equals(aOther);
+            return aOther is Coordinate && Equals(aOther);
         }
 
         public bool Equals(Coordinate? aOther)
