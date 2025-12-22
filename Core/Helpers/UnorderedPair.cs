@@ -1,6 +1,6 @@
 namespace AdventOfCode.Core.Helpers
 {
-    public class UnorderedPair<T>(T aItem1, T aItem2)
+    public class UnorderedPair<T>(T aItem1, T aItem2) : IEquatable<UnorderedPair<T>>
         where T : notnull
     {
         #region Properties
