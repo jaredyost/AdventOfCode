@@ -35,6 +35,35 @@ namespace AdventOfCode.Core.Helpers.Mapping
         #endregion
 
         #region Methods
+        public void AddOutline(Coordinate[] aCoordinates, T aOutlineValue)
+        {
+            // Fill in the vertical outlines of the red and green tiles
+            Coordinate[] tiles = [.. aCoordinates.OrderBy(tile => tile.X).ThenBy(tile => tile.Y)];
+            for (int i = 0; i < tiles.Length - 1; i++)
+            {
+                if (tiles[i].X == tiles[i + 1].X)
+                {
+                    for (int y = tiles[i].Y; y <= tiles[i + 1].Y; y++)
+                    {
+                        this[tiles[i].X, y] = aOutlineValue;
+                    }
+                }
+            }
+
+            // Fill in the horizontal outlines of the red and green tiles
+            tiles = [.. aCoordinates.OrderBy(tile => tile.Y).ThenBy(tile => tile.X)];
+            for (int i = 0; i < tiles.Length - 1; i++)
+            {
+                if (tiles[i].Y == tiles[i + 1].Y)
+                {
+                    for (int x = tiles[i].X; x <= tiles[i + 1].X; x++)
+                    {
+                        this[x, tiles[i].Y] = aOutlineValue;
+                    }
+                }
+            }
+        }
+
         public int Count()
         {
             return Count(x => x != null && x.Equals(true));
@@ -81,6 +110,58 @@ namespace AdventOfCode.Core.Helpers.Mapping
             return null;
         }
 
+        public bool IsCoordinateOnOrInsideShape(Coordinate aCoordinate, T aOutlineValue)
+        {
+            // Utilize ray tracing to count the number of intersections. An odd number means the
+            // shape is inside (or on) the outline, and an even number means it lies outside the
+            // outline.
+            int horizontalIntersections = 0;
+            for (int x = 0; x <= aCoordinate.X; x++)
+            {
+                if (this[x, aCoordinate.Y]?.Equals(aOutlineValue) ?? false)
+                {
+                    Coordinate up = new(aCoordinate.X, aCoordinate.Y - 1);
+                    bool isUpOutline =
+                        IsValidCoordinate(up) && (this[up]?.Equals(aOutlineValue) ?? false);
+
+                    Coordinate down = new(aCoordinate.X, aCoordinate.Y + 1);
+                    bool isDownOutline =
+                        IsValidCoordinate(down) && (this[down]?.Equals(aOutlineValue) ?? false);
+
+                    if (isUpOutline || isDownOutline)
+                    {
+                        return true;
+                    }
+
+                    horizontalIntersections++;
+                }
+            }
+
+            int verticalIntersections = 0;
+            for (int y = 0; y <= aCoordinate.Y; y++)
+            {
+                if (this[aCoordinate.X, y]?.Equals(aOutlineValue) ?? false)
+                {
+                    Coordinate left = new(aCoordinate.X - 1, aCoordinate.Y);
+                    bool isLeftOutline =
+                        IsValidCoordinate(left) && (this[left]?.Equals(aOutlineValue) ?? false);
+
+                    Coordinate right = new(aCoordinate.X + 1, aCoordinate.Y);
+                    bool isRightOutline =
+                        IsValidCoordinate(right) && (this[right]?.Equals(aOutlineValue) ?? false);
+
+                    if (isLeftOutline || isRightOutline)
+                    {
+                        return true;
+                    }
+
+                    verticalIntersections++;
+                }
+            }
+
+            return (horizontalIntersections % 2 != 0) && (verticalIntersections % 2 != 0);
+        }
+
         public bool IsValidCoordinate(Coordinate aCoordinate)
         {
             return MathUtilities.InRange(aCoordinate.X, 0, Width - 1)
@@ -89,7 +170,7 @@ namespace AdventOfCode.Core.Helpers.Mapping
 
         public bool IsValidCoordinate(Coordinate[] aCoordinates)
         {
-            return !aCoordinates.Where(x => !IsValidCoordinate(x)).Any();
+            return !aCoordinates.Any(x => !IsValidCoordinate(x));
         }
 
         public void IterateColumnsRows(
