@@ -42,7 +42,7 @@ namespace AdventOfCode.Solvers.Y2025
                 Coordinate[] corners =
                 [
                     new(leftX, upperY),
-                    new(rightX, lowerY),
+                    new(rightX, upperY),
                     new(rightX, lowerY),
                     new(leftX, lowerY),
                 ];

@@ -115,56 +115,46 @@ namespace AdventOfCode.Core.Helpers.Mapping
             return null;
         }
 
+        /// <summary>
+        /// Determines if a point lies on or inside a shape in the map.
+        /// </summary>
+        /// <remarks>
+        /// Utilizes ray casting to count the number of intersections. The ray will be cast from
+        /// the x-axis and continue until we hit the point in question. An odd number means the
+        /// point is inside the shape, and an even number means it is outside the shape.
+        /// </remarks>
+        /// <param name="aCoordinate">The coordinates of the point to check</param>
+        /// <param name="aOutlineValue">The value representing the shape outline in the map</param>
+        /// <returns>
+        /// <see langword="true"/> if the point is inside or on the shape outline,
+        /// otherwise <see langword="false"/>.
+        /// </returns>
         public bool IsCoordinateOnOrInsideShape(Coordinate aCoordinate, T aOutlineValue)
         {
-            // Utilize ray tracing to count the number of intersections. An odd number means the
-            // shape is inside (or on) the outline, and an even number means it lies outside the
-            // outline.
-            int horizontalIntersections = 0;
-            for (int x = 0; x <= aCoordinate.X; x++)
+            // First check if the point lies on the border
+            if (this[aCoordinate]?.Equals(aOutlineValue) ?? false)
             {
-                if (this[x, aCoordinate.Y]?.Equals(aOutlineValue) ?? false)
+                return true;
+            }
+
+            // Next count the intersections and determine inside/outside based on the result
+            int intersectionCount = 0;
+            for (int x = 0; x < aCoordinate.X; x++)
+            {
+                // Do not double count the same border. This is incorrect if there is a
+                // bump in the shape outline that then returns back to "normal" (we count it
+                // as a single intersection) into the shape. If that becomes important, we'll
+                // need to modify this method later to account for that.
+                Coordinate previous = new(x - 1, aCoordinate.Y);
+                bool previousIsOutline =
+                    IsValidCoordinate(previous) && (this[previous]?.Equals(aOutlineValue) ?? false);
+                if (!previousIsOutline && (this[x, aCoordinate.Y]?.Equals(aOutlineValue) ?? false))
                 {
-                    Coordinate up = new(aCoordinate.X, aCoordinate.Y - 1);
-                    bool isUpOutline =
-                        IsValidCoordinate(up) && (this[up]?.Equals(aOutlineValue) ?? false);
-
-                    Coordinate down = new(aCoordinate.X, aCoordinate.Y + 1);
-                    bool isDownOutline =
-                        IsValidCoordinate(down) && (this[down]?.Equals(aOutlineValue) ?? false);
-
-                    if (isUpOutline || isDownOutline)
-                    {
-                        return true;
-                    }
-
-                    horizontalIntersections++;
+                    intersectionCount++;
                 }
             }
 
-            int verticalIntersections = 0;
-            for (int y = 0; y <= aCoordinate.Y; y++)
-            {
-                if (this[aCoordinate.X, y]?.Equals(aOutlineValue) ?? false)
-                {
-                    Coordinate left = new(aCoordinate.X - 1, aCoordinate.Y);
-                    bool isLeftOutline =
-                        IsValidCoordinate(left) && (this[left]?.Equals(aOutlineValue) ?? false);
-
-                    Coordinate right = new(aCoordinate.X + 1, aCoordinate.Y);
-                    bool isRightOutline =
-                        IsValidCoordinate(right) && (this[right]?.Equals(aOutlineValue) ?? false);
-
-                    if (isLeftOutline || isRightOutline)
-                    {
-                        return true;
-                    }
-
-                    verticalIntersections++;
-                }
-            }
-
-            return (horizontalIntersections % 2 != 0) && (verticalIntersections % 2 != 0);
+            return intersectionCount % 2 != 0;
         }
 
         public bool IsValidCoordinate(Coordinate aCoordinate)
