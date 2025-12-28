@@ -1,17 +1,18 @@
 namespace AdventOfCode.Core.Helpers.Mapping
 {
     public class Map<T>
+        where T : new()
     {
         #region Properties
-        public T[,] Grid { get; }
-        public int Height => Grid.GetLength(0);
-        public int Width => Grid.GetLength(1);
+        public List<List<T>> Grid { get; }
+        public int Height => Grid.Count;
+        public int Width => Grid[0].Count;
         #endregion
 
         #region Constructors
         public Map(string[] aGrid, Func<char, T> aParseFunction)
+            : this(aGrid.Length, aGrid[0].Length, new T())
         {
-            Grid = new T[aGrid.Length, aGrid[0].Length];
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
@@ -23,12 +24,13 @@ namespace AdventOfCode.Core.Helpers.Mapping
 
         public Map(int aHeight, int aWidth, T aInitialValue)
         {
-            Grid = new T[aHeight, aWidth];
-            for (int y = 0; y < Height; y++)
+            Grid = new List<List<T>>(aHeight);
+            for (int y = 0; y < aHeight; y++)
             {
-                for (int x = 0; x < Width; x++)
+                Grid.Add(new List<T>(aWidth));
+                for (int x = 0; x < aWidth; x++)
                 {
-                    this[x, y] = aInitialValue;
+                    Grid[y].Add(aInitialValue);
                 }
             }
         }
@@ -72,9 +74,12 @@ namespace AdventOfCode.Core.Helpers.Mapping
         public int Count(Func<T, bool> aFilter)
         {
             int count = 0;
-            foreach (T item in Grid)
+            foreach (List<T> row in Grid)
             {
-                count += aFilter(item) ? 1 : 0;
+                foreach (T item in row)
+                {
+                    count += aFilter(item) ? 1 : 0;
+                }
             }
 
             return count;
@@ -210,8 +215,8 @@ namespace AdventOfCode.Core.Helpers.Mapping
         #region Operators
         public T this[int aX, int aY]
         {
-            get => Grid[aY, aX];
-            set => Grid[aY, aX] = value;
+            get => Grid[aY][aX];
+            set => Grid[aY][aX] = value;
         }
 
         public T this[Coordinate aCoordinate]
