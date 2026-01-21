@@ -70,7 +70,7 @@ namespace AdventOfCode.Tests.Y2025
             Assert.AreEqual("4777824480", result);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         public async Task Y2025_D09_Part2_Real()
         {
             // Arrange
@@ -80,9 +80,7 @@ namespace AdventOfCode.Tests.Y2025
             string result = await solver.SolvePart2(solver.ProblemInput);
 
             // Assert
-            // 4714525461 -> Too High
-            // 4655183296 -> Too High
-            Assert.AreEqual("", result);
+            Assert.AreEqual("1542119040", result);
         }
     }
 }
