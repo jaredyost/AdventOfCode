@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Core.Helpers.Mapping
+﻿namespace AdventOfCode.Core.Helpers.Types.Mapping
 {
     public class Coordinate(int aX, int aY) : IEquatable<Coordinate>
     {

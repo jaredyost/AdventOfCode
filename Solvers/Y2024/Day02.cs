@@ -1,6 +1,4 @@
-﻿using AdventOfCode.Core.Helpers;
-
-namespace AdventOfCode.Solvers.Y2024
+﻿namespace AdventOfCode.Solvers.Y2024
 {
     public class Day02 : BaseDay2024
     {
@@ -37,8 +35,8 @@ namespace AdventOfCode.Solvers.Y2024
             {
                 int difference = aLevels[i] - aLevels[i - 1];
                 isSafe =
-                    MathUtilities.SameSigns(factor, difference)
-                    && MathUtilities.InRange(Math.Abs(difference), 1, 3);
+                    Core.Helpers.Utilities.Math.SameSigns(factor, difference)
+                    && Core.Helpers.Utilities.Math.InRange(Math.Abs(difference), 1, 3);
             }
 
             if (!isSafe && aErrorTolerance == ErrorTolerance.Single)

@@ -1,5 +1,5 @@
 using System.Numerics;
-using Connection = AdventOfCode.Core.Helpers.UnorderedPair<System.Numerics.Vector3>;
+using Connection = AdventOfCode.Core.Helpers.Types.UnorderedPair<System.Numerics.Vector3>;
 
 namespace AdventOfCode.Solvers.Y2025
 {

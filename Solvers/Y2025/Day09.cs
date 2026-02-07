@@ -1,5 +1,5 @@
-using AdventOfCode.Core.Helpers;
-using AdventOfCode.Core.Helpers.Mapping;
+using AdventOfCode.Core.Helpers.Types;
+using AdventOfCode.Core.Helpers.Types.Mapping;
 
 namespace AdventOfCode.Solvers.Y2025
 {

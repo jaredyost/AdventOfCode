@@ -1,4 +1,4 @@
-namespace AdventOfCode.Core.Helpers.Mapping
+namespace AdventOfCode.Core.Helpers.Types.Mapping
 {
     public class Map<T>
         where T : new()
@@ -138,8 +138,8 @@ namespace AdventOfCode.Core.Helpers.Mapping
 
         public bool IsValidCoordinate(Coordinate aCoordinate)
         {
-            return MathUtilities.InRange(aCoordinate.X, 0, Width - 1)
-                && MathUtilities.InRange(aCoordinate.Y, 0, Height - 1);
+            return Utilities.Math.InRange(aCoordinate.X, 0, Width - 1)
+                && Utilities.Math.InRange(aCoordinate.Y, 0, Height - 1);
         }
 
         public bool IsValidCoordinate(Coordinate[] aCoordinates)

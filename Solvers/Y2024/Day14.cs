@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using AdventOfCode.Core.Helpers.Mapping;
+using AdventOfCode.Core.Helpers.Types.Mapping;
 #if DEBUG
 using System.Diagnostics;
 #endif

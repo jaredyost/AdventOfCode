@@ -1,4 +1,4 @@
-namespace AdventOfCode.Core.Helpers
+namespace AdventOfCode.Core.Helpers.Types
 {
     public class UnorderedPair<T>(T aItem1, T aItem2) : IEquatable<UnorderedPair<T>>
         where T : notnull
