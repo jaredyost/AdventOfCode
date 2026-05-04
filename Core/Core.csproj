@@ -6,6 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="AoCHelper" Version="4.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.7" />
   </ItemGroup>
 </Project>
